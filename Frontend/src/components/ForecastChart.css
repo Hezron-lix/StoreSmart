@@ -1,0 +1,42 @@
+/* components/ForecastChart.css */
+
+.forecast-chart {
+  background: var(--swa-surface);
+  border: 1px solid var(--swa-border);
+  border-radius: var(--swa-radius);
+  padding: var(--swa-space-lg);
+}
+
+.forecast-chart--loading,
+.forecast-chart--error {
+  color: var(--swa-text-secondary);
+  font-size: 0.9rem;
+}
+
+.forecast-chart--error {
+  color: var(--swa-signal-critical);
+}
+
+.forecast-chart__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--swa-space-md);
+  flex-wrap: wrap;
+  gap: var(--swa-space-sm);
+}
+
+.forecast-chart__title {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.forecast-chart__runway {
+  font-size: 0.8rem;
+  color: var(--swa-text-secondary);
+}
+
+.forecast-chart__runway strong {
+  color: var(--swa-signal-critical);
+  font-family: var(--swa-font-mono);
+}

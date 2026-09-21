@@ -1,0 +1,8 @@
+{
+  "duplicate_hash_algo": "sha256",
+  "huge_file_threshold_gb": 1.0,
+  "entropy_sample_bytes": 4096,
+  "risk_weight": 0.6,
+  "gain_weight": 0.4,
+  "alert_spike_sigma": 3
+}

@@ -1,0 +1,138 @@
+.compression-card {
+  background: #151d26;
+  border: 1px solid #293542;
+  border-radius: 8px;
+  padding: 26px 28px;
+  min-height: 390px;
+  color: #f7f9fc;
+}
+
+.compression-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.compression-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.compression-header p {
+  margin: 6px 0 0;
+  color: #8fa7c2;
+  font-size: 14px;
+}
+
+.model-badge {
+  padding: 6px 10px;
+  border: 1px solid #2d8cff;
+  border-radius: 6px;
+  color: #56a8ff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.compression-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.metric-box {
+  background: #10171f;
+  border: 1px solid #273441;
+  border-radius: 7px;
+  padding: 16px;
+}
+
+.metric-box span {
+  display: block;
+  color: #8ca2bb;
+  font-size: 12px;
+  margin-bottom: 7px;
+}
+
+.metric-box strong {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.compression-table-title {
+  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.compression-table {
+  width: 100%;
+}
+
+.compression-row {
+  display: grid;
+  grid-template-columns: 1.6fr 0.8fr 0.8fr 0.8fr 0.8fr;
+  align-items: center;
+  gap: 10px;
+
+  padding: 11px 8px;
+
+  border-bottom:
+    1px solid #26323e;
+
+  font-size: 13px;
+}
+
+.compression-table-head {
+  color: #88a0ba;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.asset-id {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.saving-percent {
+  color: #f3a83b;
+  font-weight: 700;
+}
+
+.compression-note {
+  margin-top: 18px;
+
+  color: #74879b;
+
+  font-size: 12px;
+}
+
+.compression-loading,
+.compression-error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 300px;
+
+  color: #8fa7c2;
+}
+
+.compression-error {
+  color: #ff5c5c;
+}
+
+@media (max-width: 900px) {
+  .compression-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .compression-row {
+    grid-template-columns:
+      1.4fr 0.7fr 0.7fr 0.7fr 0.7fr;
+  }
+}

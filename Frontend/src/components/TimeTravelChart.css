@@ -1,0 +1,60 @@
+/* components/TimeTravelChart.css */
+
+.time-travel {
+  background: var(--swa-surface);
+  border: 1px solid var(--swa-border);
+  border-radius: var(--swa-radius);
+  padding: var(--swa-space-lg);
+}
+
+.time-travel--loading,
+.time-travel--error {
+  color: var(--swa-text-secondary);
+  font-size: 0.9rem;
+}
+
+.time-travel--error {
+  color: var(--swa-signal-critical);
+}
+
+.time-travel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--swa-space-md);
+}
+
+.time-travel__title {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.time-travel__date {
+  font-family: var(--swa-font-mono);
+  font-size: 0.8rem;
+  color: var(--swa-text-secondary);
+}
+
+.time-travel__slider {
+  width: 100%;
+  margin-top: var(--swa-space-md);
+  accent-color: var(--swa-signal-neutral);
+  cursor: pointer;
+}
+
+.time-travel__slider:focus-visible {
+  outline: 2px solid var(--swa-signal-neutral);
+  outline-offset: 2px;
+}
+
+.time-travel__snapshot {
+  margin-top: var(--swa-space-sm);
+  font-size: 0.85rem;
+  color: var(--swa-text-secondary);
+  text-align: center;
+}
+
+.time-travel__snapshot strong {
+  color: var(--swa-text-primary);
+  font-family: var(--swa-font-mono);
+}

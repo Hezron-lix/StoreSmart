@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.env
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment
+.env.local
+.env.*.local
+
+# Build output
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs (runtime output — never commit)
+logs/*.csv
+logs/*.csv.*
+logs/*.log
+!logs/.gitkeep
+
+# Ignore committed data outputs if any
+output/
+canonical_records.json
+handoff_records.json
+
+# SQLite / DB dumps
+*.db
+*.sqlite
+*.sql
+
+# Node backend runtime logs
+BackEnd/logs/*.csv
+BackEnd/logs/*.log
+!BackEnd/logs/.gitkeep
+
+# Nested reference/schemas inside Data/ are duplicates of root-level folders
+Data/**/reference/
+Data/**/schemas/
+

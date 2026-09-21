@@ -1,0 +1,128 @@
+/* App.css
+   Design tokens for the whole dashboard live here as CSS variables.
+   Every other component's stylesheet reuses these instead of hardcoding colors. */
+
+:root {
+  /* Base palette */
+  --swa-bg: #0f1419;
+  --swa-surface: #161c24;
+  --swa-surface-raised: #1d2530;
+  --swa-border: #2a3441;
+  --swa-text-primary: #e6edf3;
+  --swa-text-secondary: #8b98a5;
+
+  /* Signal colors — meaning-carrying, not decorative */
+  --swa-signal-good: #3ddc97;
+  --swa-signal-warning: #e8a33d;
+  --swa-signal-critical: #e5484d;
+  --swa-signal-neutral: #4a90d9;
+
+  /* Typography */
+  --swa-font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --swa-font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+
+  /* Spacing scale */
+  --swa-space-xs: 4px;
+  --swa-space-sm: 8px;
+  --swa-space-md: 16px;
+  --swa-space-lg: 24px;
+  --swa-space-xl: 40px;
+
+  --swa-radius: 6px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--swa-bg);
+  color: var(--swa-text-primary);
+  font-family: var(--swa-font-sans);
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--swa-space-md) var(--swa-space-lg);
+  border-bottom: 1px solid var(--swa-border);
+  background: var(--swa-surface);
+}
+
+.app-header__brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.app-header__subtitle {
+  font-size: 0.8rem;
+  color: var(--swa-text-secondary);
+}
+
+.app-main {
+  flex: 1;
+  padding: var(--swa-space-lg);
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* User badge (replaces the old role switcher) */
+.user-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--swa-space-sm);
+  font-size: 0.85rem;
+}
+
+.user-badge__name {
+  color: var(--swa-text-primary);
+}
+
+.user-badge__role {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  border: 1px solid var(--swa-border);
+  color: var(--swa-text-secondary);
+}
+
+.user-badge__role--super-admin {
+  color: var(--swa-signal-good);
+  border-color: rgba(61, 220, 151, 0.4);
+  background: rgba(61, 220, 151, 0.1);
+}
+
+.user-badge__logout {
+  background: var(--swa-surface-raised);
+  color: var(--swa-text-primary);
+  border: 1px solid var(--swa-border);
+  border-radius: var(--swa-radius);
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  font-family: var(--swa-font-sans);
+  cursor: pointer;
+}
+
+.user-badge__logout:hover {
+  border-color: var(--swa-signal-neutral);
+}
+
+.user-badge__logout:focus-visible {
+  outline: 2px solid var(--swa-signal-neutral);
+  outline-offset: 1px;
+}

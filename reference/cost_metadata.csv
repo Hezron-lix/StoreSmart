@@ -1,0 +1,6 @@
+storage_tier,cost_per_gb_per_month_eur
+primary_ssd,0.06
+archive_cold,0.14
+cloud_object,0.14
+glacier,0.05
+nearline,0.06

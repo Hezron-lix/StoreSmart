@@ -1,0 +1,85 @@
+{
+  "type": "record",
+  "name": "Asset",
+  "namespace": "com.storagewise",
+  "fields": [
+    {
+      "name": "asset_id",
+      "type": "string"
+    },
+    {
+      "name": "source_type",
+      "type": "string"
+    },
+    {
+      "name": "source_path",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "size_gb",
+      "type": "double"
+    },
+    {
+      "name": "created_ts",
+      "type": "long"
+    },
+    {
+      "name": "modified_ts",
+      "type": "long"
+    },
+    {
+      "name": "owner_dept",
+      "type": "string"
+    },
+    {
+      "name": "tags",
+      "type": {
+        "type": "array",
+        "items": "string"
+      }
+    },
+    {
+      "name": "checksum_sha256",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "policy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "is_duplicate",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "is_ghost",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "is_expired",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "entropy_score",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null
+    }
+  ]
+}
