@@ -44,3 +44,7 @@ class CompressionRequest(BaseModel):
 class CompressionBatchRequest(BaseModel):
     limit: int = 100
     source_type: str | None = None
+
+
+class ActionRequest(BaseModel):
+    action: str
