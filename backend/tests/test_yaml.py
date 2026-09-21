@@ -2,7 +2,7 @@
 
 import pytest
 
-from ingestion.parsers.yaml_parser import parse_document, parse_yaml_file
+from backend.parsers.yaml_parser import parse_document, parse_yaml_file
 
 
 def test_each_document_becomes_its_own_asset(yaml_file):

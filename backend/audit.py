@@ -6,7 +6,7 @@ application's perspective — no function in this module edits or deletes rows.
 
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
 
 from backend.config import SETTINGS
 
@@ -28,12 +28,58 @@ def write_audit_record(
     policy_id: Optional[str] = None,
     outcome: Optional[str] = None,
     reason: Optional[str] = None,
+    **kwargs: Any,
 ) -> None:
     """Append one audit row to the CSV log.
 
-    Creates the file (with header) if it does not exist. Never rewrites or
-    truncates existing rows.
+    Accepts both canonical names (user, role, file, outcome) and legacy
+    aliases (user_id, user_role, asset_id, decision) for backward compatibility.
+    If an alias and its canonical form are both supplied with different values,
+    or an unknown keyword is passed, raises TypeError.
     """
+    alias_map = {
+        "user_id": "user",
+        "user_role": "role",
+        "asset_id": "file",
+        "decision": "outcome",
+    }
+    canonical = {
+        "user": user,
+        "role": role,
+        "file": file,
+        "outcome": outcome,
+    }
+    for alias, canonical_name in alias_map.items():
+        if alias not in kwargs:
+            continue
+        alias_value = kwargs.pop(alias)
+        if canonical[canonical_name] is None:
+            if canonical_name == "user":
+                user = alias_value
+            elif canonical_name == "role":
+                role = alias_value
+            elif canonical_name == "file":
+                file = alias_value
+            elif canonical_name == "outcome":
+                outcome = alias_value
+            canonical[canonical_name] = alias_value
+        elif canonical[canonical_name] != alias_value:
+            raise TypeError(
+                f"write_audit_record got conflicting values for "
+                f"{canonical_name!r}: canonical={canonical[canonical_name]!r} "
+                f"alias {alias!r}={alias_value!r}"
+            )
+
+    # Legacy metadata kwargs accepted by ingestion without affecting CSV columns
+    kwargs.pop("risk_level", None)
+
+    if kwargs:
+        unknown = ", ".join(sorted(kwargs))
+        raise TypeError(
+            f"write_audit_record got unexpected keyword argument(s): {unknown}"
+        )
+
+    # ----- existing body below this line -----
     log_path: Path = SETTINGS.log_path_abs
     log_path.parent.mkdir(parents=True, exist_ok=True)
 

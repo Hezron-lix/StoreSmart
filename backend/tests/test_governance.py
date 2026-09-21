@@ -5,12 +5,14 @@ checksum validation, and audit recording.
 from datetime import datetime, timezone, timedelta
 import pytest
 
-from ingestion.governance import (
+from backend.governance import (
     load_retention_policies,
     evaluate_action,
+    DETERMINISTIC_POLICIES,
+)
+from backend.audit import (
     write_audit_record,
     get_audit_csv_content,
-    DETERMINISTIC_POLICIES,
 )
 
 

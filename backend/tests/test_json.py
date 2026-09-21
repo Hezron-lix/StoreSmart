@@ -2,9 +2,9 @@
 
 import pytest
 
-from ingestion.parsers.json_parser import parse_json_file, parse_payload
+from backend.parsers.json_parser import parse_json_file, parse_payload
 try:
-    from ingestion.tests.conftest import make_json_line
+    from backend.tests.conftest import make_json_line
 except ImportError:
     from tests.conftest import make_json_line
 

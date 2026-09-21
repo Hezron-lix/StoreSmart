@@ -1,6 +1,6 @@
 """Tests for record validation."""
 
-from ingestion.normalize import normalize_record, validate_record, validate_records
+from backend.normalize import normalize_record, validate_record, validate_records
 
 
 def _valid(raw_record):

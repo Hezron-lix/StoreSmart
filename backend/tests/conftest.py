@@ -7,7 +7,7 @@ from typing import Any, Dict
 
 import pytest
 
-from ingestion.parsers.txt_layout_config import EXPECTED_LINE_LENGTH
+from backend.parsers.txt_layout_config import EXPECTED_LINE_LENGTH
 
 
 def make_txt_line(

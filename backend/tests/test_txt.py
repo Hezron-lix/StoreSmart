@@ -2,10 +2,10 @@
 
 import pytest
 
-from ingestion.parsers.txt_layout_config import SIZE_UNIT, TXT_LAYOUT
-from ingestion.parsers.txt_parser import parse_line, parse_txt_file
+from backend.parsers.txt_layout_config import SIZE_UNIT, TXT_LAYOUT
+from backend.parsers.txt_parser import parse_line, parse_txt_file
 try:
-    from ingestion.tests.conftest import make_txt_line
+    from backend.tests.conftest import make_txt_line
 except ImportError:
     from tests.conftest import make_txt_line
 

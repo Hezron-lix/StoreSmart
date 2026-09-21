@@ -2,8 +2,8 @@
 
 import pytest
 
-from ingestion.normalize import normalize_record, normalize_records, to_canonical, to_handoff
-from ingestion.utils import coerce_tags, normalize_timestamp, split_file_name, to_gb
+from backend.normalize import normalize_record, normalize_records, to_canonical, to_handoff
+from backend.utils import coerce_tags, normalize_timestamp, split_file_name, to_gb
 
 
 @pytest.mark.parametrize(

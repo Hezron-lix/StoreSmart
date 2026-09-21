@@ -1,7 +1,7 @@
 """Tests for deterministic fingerprints and duplicate detection."""
 
-from ingestion.normalize import build_fingerprint, deduplicate, normalize_record
-from ingestion.utils import is_sha256_hex
+from backend.normalize import build_fingerprint, deduplicate, normalize_record
+from backend.utils import is_sha256_hex
 
 
 def test_checksum_is_a_sha256_hex_digest(raw_record):

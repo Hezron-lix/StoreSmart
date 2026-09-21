@@ -1,6 +1,6 @@
 """Tests for the cloud metadata CSV parser."""
 
-from ingestion.parsers.csv_parser import MAX_ASSET_ID_LENGTH, build_asset_id, parse_csv_file
+from backend.parsers.csv_parser import MAX_ASSET_ID_LENGTH, build_asset_id, parse_csv_file
 
 
 def test_parses_rows(csv_file):

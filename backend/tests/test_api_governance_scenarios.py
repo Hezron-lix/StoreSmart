@@ -7,8 +7,10 @@ import jwt
 from fastapi.testclient import TestClient
 import pytest
 
-from ingestion.api import app, JWT_SECRET
-from ingestion.database import fetch_asset, get_connection
+from backend.main import app
+from backend.config import SETTINGS
+JWT_SECRET = SETTINGS.jwt_secret
+from backend.db import fetch_asset, get_connection
 
 client = TestClient(app)
 
