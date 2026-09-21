@@ -1,15 +1,24 @@
-"""Database connection shim.
+"""Database shim.
 
-Re-exports the connection factory from the legacy `ingestion.database`
-module. This exists so that new backend modules can import
-`from backend.db import get_connection` without depending directly on
-the old package.
-
-Phase 5 replaces the internals here with the fully-ported
-implementation. Router modules should NOT need to change when that
-happens.
+Re-exports connection and query helpers from the legacy
+`ingestion.database` module. Phase 5 replaces the internals here with
+a fully-ported implementation; routers do not need to change then.
 """
 
-from ingestion.database import get_connection  # TODO(phase5): port impl
+from ingestion.database import (  # TODO(phase5): port impl
+    fetch_asset,
+    fetch_assets,
+    fetch_compression_insights,
+    fetch_storage_history,
+    get_connection,
+    upsert_prediction,
+)
 
-__all__ = ["get_connection"]
+__all__ = [
+    "get_connection",
+    "fetch_assets",
+    "fetch_asset",
+    "fetch_storage_history",
+    "upsert_prediction",
+    "fetch_compression_insights",
+]
