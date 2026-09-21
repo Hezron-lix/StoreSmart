@@ -45,11 +45,8 @@ handoff_records.json
 *.sql
 
 # Node backend runtime logs
-BackEnd/logs/*.csv
-BackEnd/logs/*.log
-!BackEnd/logs/.gitkeep
 
 # Nested reference/schemas inside Data/ are duplicates of root-level folders
 Data/**/reference/
 Data/**/schemas/
-
+
