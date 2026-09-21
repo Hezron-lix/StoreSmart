@@ -1,0 +1,1 @@
+"""StoreSmart backend tests package."""
