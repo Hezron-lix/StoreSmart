@@ -1,0 +1,467 @@
+/* ============================================================
+   StoreSmart Base Utility Classes (Stripe HDS Convention)
+   All values strictly reference tokens from tokens.css
+   ============================================================ */
+
+/* ============================================================
+   Reset & Root Box Model
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: var(--space-0);
+  background-color: var(--color-bg-quiet);
+  color: var(--color-text-solid);
+  font-family: var(--font-family);
+  font-size: var(--font-text-md-size);
+  line-height: var(--font-text-md-lineHeight);
+  font-weight: var(--font-weight-normal);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================================
+   Typography: Section Eyebrow
+   ============================================================ */
+.section__eyebrow {
+  font-family: var(--font-family);
+  font-size: var(--font-eyebrow-size);
+  line-height: var(--font-eyebrow-lineHeight);
+  font-weight: var(--font-eyebrow-weight);
+  letter-spacing: var(--font-eyebrow-letterSpacing);
+  color: var(--color-text-subdued);
+  text-transform: uppercase;
+  margin: var(--space-0);
+}
+
+/* ============================================================
+   Typography: Headings
+   ============================================================ */
+.hds-heading {
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-text-solid);
+  margin: var(--space-0);
+}
+
+.hds-heading--md {
+  font-size: var(--font-heading-md-size);
+  line-height: var(--font-heading-md-lineHeight);
+  letter-spacing: var(--font-heading-md-letterSpacing);
+}
+
+.hds-heading--lg {
+  font-size: var(--font-heading-lg-size);
+  line-height: var(--font-heading-lg-lineHeight);
+  letter-spacing: var(--font-heading-lg-letterSpacing);
+}
+
+.hds-heading--xl {
+  font-size: var(--font-heading-xl-size);
+  line-height: var(--font-heading-xl-lineHeight);
+  letter-spacing: var(--font-heading-xl-letterSpacing);
+}
+
+.hds-heading--xxl {
+  font-size: var(--font-heading-xxl-size);
+  line-height: var(--font-heading-xxl-lineHeight);
+  letter-spacing: var(--font-heading-xxl-letterSpacing);
+}
+
+.hds-hero--md {
+  font-size: var(--font-heading-hero-md-size);
+  line-height: var(--font-heading-hero-md-lineHeight);
+  letter-spacing: var(--font-heading-hero-md-letterSpacing);
+}
+
+.hds-hero--lg {
+  font-size: var(--font-heading-hero-lg-size);
+  line-height: var(--font-heading-hero-lg-lineHeight);
+  letter-spacing: var(--font-heading-hero-lg-letterSpacing);
+}
+
+/* ============================================================
+   Typography: Body Scale
+   ============================================================ */
+.hds-text {
+  font-family: var(--font-family);
+  margin: var(--space-0);
+}
+
+.hds-text--xs {
+  font-size: var(--font-text-xs-size);
+  line-height: var(--font-text-xs-lineHeight);
+}
+
+.hds-text--sm {
+  font-size: var(--font-text-sm-size);
+  line-height: var(--font-text-sm-lineHeight);
+}
+
+.hds-text--md {
+  font-size: var(--font-text-md-size);
+  line-height: var(--font-text-md-lineHeight);
+}
+
+.hds-text--lg {
+  font-size: var(--font-text-lg-size);
+  line-height: var(--font-text-lg-lineHeight);
+}
+
+.hds-text--xl {
+  font-size: var(--font-text-xl-size);
+  line-height: var(--font-text-xl-lineHeight);
+}
+
+/* Typography Modifiers */
+.hds-text--solid {
+  color: var(--color-text-solid);
+}
+
+.hds-text--soft {
+  color: var(--color-text-soft);
+}
+
+.hds-text--subdued {
+  color: var(--color-text-subdued);
+}
+
+.hds-text--normal {
+  font-weight: var(--font-weight-normal);
+}
+
+.hds-text--code {
+  font-family: var(--font-family-code);
+}
+
+/* ============================================================
+   Dividers
+   ============================================================ */
+.hds-divider {
+  border: var(--space-0);
+  border-top: 1px solid var(--color-border-subdued);
+  margin: var(--space-200) var(--space-0);
+  width: 100%;
+}
+
+.hds-divider--section {
+  border: var(--space-0);
+  height: var(--space-25);
+  background: var(--gradient-section-divider);
+  margin: var(--space-400) var(--space-0);
+  width: 100%;
+}
+
+/* ============================================================
+   Layout: Containers and Grids
+   ============================================================ */
+.hds-container {
+  width: 100%;
+  max-width: var(--layout-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--layout-page-margin);
+  padding-right: var(--layout-page-margin);
+}
+
+.hds-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--layout-columns), minmax(0, 1fr));
+  gap: var(--layout-gap);
+}
+
+/* ============================================================
+   Interactive: Buttons
+   ============================================================ */
+.hds-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family);
+  font-size: var(--font-text-md-size);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--font-text-md-lineHeight);
+  padding: var(--space-150) var(--space-300);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-brand-600);
+  color: var(--color-neutral-0);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color var(--duration-fast) var(--ease-standard),
+              transform var(--duration-fast) var(--ease-standard),
+              box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+.hds-button:hover {
+  background-color: var(--color-brand-700);
+}
+
+.hds-button:active {
+  background-color: var(--color-brand-800);
+  transform: scale(0.98);
+}
+
+.hds-button:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
+}
+
+.hds-button--secondary {
+  background-color: transparent;
+  color: var(--color-text-solid);
+  border: 1px solid var(--color-border-subdued);
+}
+
+.hds-button--secondary:hover {
+  background-color: var(--color-bg-subdued);
+  border-color: var(--color-border-solid);
+}
+
+.hds-button--secondary:active {
+  background-color: var(--color-bg-emphasized);
+}
+
+.hds-button--secondary:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
+}
+
+.hds-button--compact {
+  padding: var(--space-100) var(--space-200);
+  font-size: var(--font-text-sm-size);
+  line-height: var(--font-text-sm-lineHeight);
+}
+
+.hds-button--compact:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
+}
+
+.hds-button--danger {
+  background-color: var(--color-accent-ruby-400);
+  color: var(--color-neutral-0);
+  border: 1px solid transparent;
+}
+
+.hds-button--danger:hover {
+  opacity: 0.92;
+}
+
+.hds-button--danger:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
+}
+
+/* ============================================================
+   Interactive: Links
+   ============================================================ */
+.hds-link {
+  font-family: var(--font-family);
+  color: var(--color-brand-600);
+  text-decoration: none;
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.hds-link:hover {
+  color: var(--color-brand-700);
+  text-decoration: underline;
+}
+
+.hds-link:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
+  border-radius: var(--radius-xs);
+}
+
+.hds-link--secondary {
+  color: var(--color-text-subdued);
+}
+
+.hds-link--secondary:hover {
+  color: var(--color-text-solid);
+}
+
+.hds-link--secondary:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
+}
+
+/* ============================================================
+   Interactive: Form Inputs
+   ============================================================ */
+.hds-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-75);
+  margin-bottom: var(--space-200);
+}
+
+.hds-label {
+  font-family: var(--font-family);
+  font-size: var(--font-text-sm-size);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-solid);
+}
+
+.hds-input,
+.hds-textarea,
+.hds-select {
+  width: 100%;
+  font-family: var(--font-family);
+  font-size: var(--font-text-md-size);
+  line-height: var(--font-text-md-lineHeight);
+  color: var(--color-text-solid);
+  background-color: var(--color-bg-quiet);
+  border: 1px solid var(--color-border-subdued);
+  border-radius: var(--radius-sm);
+  padding: var(--space-100) var(--space-150);
+  transition: border-color var(--duration-fast) var(--ease-standard),
+              box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+.hds-input:hover,
+.hds-textarea:hover,
+.hds-select:hover {
+  border-color: var(--color-border-solid);
+}
+
+.hds-input:focus-visible,
+.hds-textarea:focus-visible,
+.hds-select:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
+  border-color: var(--color-brand-600);
+}
+
+.hds-field-error {
+  font-family: var(--font-family);
+  font-size: var(--font-text-xs-size);
+  color: var(--color-accent-ruby-400);
+  margin-top: var(--space-50);
+}
+
+/* ============================================================
+   Components: Cards
+   ============================================================ */
+.hds-card {
+  background-color: var(--color-bg-quiet);
+  border: 1px solid var(--color-border-subdued);
+  border-radius: var(--radius-md);
+  padding: var(--space-300);
+  box-shadow: var(--shadow-xs);
+  transition: box-shadow var(--duration-fast) var(--ease-standard),
+              border-color var(--duration-fast) var(--ease-standard),
+              transform var(--duration-fast) var(--ease-standard);
+}
+
+.hds-card--subdued {
+  background-color: var(--color-bg-subdued);
+  border-color: var(--color-border-quiet);
+}
+
+.hds-card--interactive {
+  cursor: pointer;
+}
+
+.hds-card--interactive:hover {
+  border-color: var(--color-border-solid);
+  box-shadow: var(--shadow-md);
+  transform: translateY(calc(var(--space-25) * -1));
+}
+
+.hds-card--interactive:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
+}
+
+/* ============================================================
+   Components: Tags & Badges
+   ============================================================ */
+.hds-tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-family);
+  font-size: var(--font-text-xs-size);
+  font-weight: var(--font-weight-bold);
+  padding: var(--space-25) var(--space-100);
+  border-radius: var(--radius-round);
+  background-color: var(--color-bg-subdued);
+  color: var(--color-text-subdued);
+  border: 1px solid var(--color-border-subdued);
+  gap: var(--space-50);
+}
+
+.hds-tag--brand {
+  background-color: var(--color-brand-50);
+  color: var(--color-brand-700);
+  border-color: var(--color-brand-100);
+}
+
+.hds-tag--danger {
+  background-color: var(--color-brand-25);
+  color: var(--color-accent-ruby-400);
+  border-color: var(--color-accent-ruby-400);
+}
+
+.hds-tag--warning {
+  background-color: var(--color-bg-subdued);
+  color: var(--color-accent-orange-350);
+  border-color: var(--color-accent-orange-350);
+}
+
+.hds-tag--accent {
+  background-color: var(--color-brand-25);
+  color: var(--color-accent-magenta-350);
+  border-color: var(--color-accent-magenta-350);
+}
+
+/* ============================================================
+   Components: Stats Block
+   ============================================================ */
+.hds-stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-50);
+}
+
+.hds-stat__value {
+  font-family: var(--font-family);
+  font-size: var(--font-heading-xl-size);
+  line-height: var(--font-heading-xl-lineHeight);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-text-solid);
+}
+
+.hds-stat__value--gradient {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hds-stat__description {
+  font-family: var(--font-family);
+  font-size: var(--font-text-sm-size);
+  line-height: var(--font-text-sm-lineHeight);
+  color: var(--color-text-subdued);
+}
+
+/* ============================================================
+   Components: Navigation Bar
+   ============================================================ */
+.hds-nav {
+  height: var(--nav-height);
+  background-color: var(--nav-bg);
+  border-bottom: 1px solid var(--nav-border);
+  display: flex;
+  align-items: center;
+  padding: var(--space-0) var(--layout-page-margin);
+}

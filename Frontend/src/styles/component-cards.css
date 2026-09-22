@@ -1,0 +1,51 @@
+/* component-cards.css
+   Shared visual treatment for top-level component cards.
+   Adds a 2px gradient bar at the top of each card to create a
+   visual "chapter start" and give the card hierarchy against the
+   page background.
+*/
+
+.health-score,
+.forecast-chart,
+.time-travel,
+.compression-card,
+.action-center,
+.audit-log {
+  position: relative;
+  overflow: hidden;
+}
+
+.health-score::before,
+.forecast-chart::before,
+.time-travel::before,
+.compression-card::before,
+.action-center::before,
+.audit-log::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gradient-section-divider);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hds-card--accent {
+  position: relative;
+  overflow: hidden;
+}
+
+.hds-card--accent::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gradient-section-divider);
+  pointer-events: none;
+  z-index: 1;
+}
+

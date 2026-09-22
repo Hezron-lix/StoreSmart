@@ -1,0 +1,284 @@
+/* StoreSmart design tokens — adapted from Stripe's HDS system.
+   Values match Stripe's @media (min-width: 940px) block.
+   Type scale cascades from mobile → 640px → 940px.
+   Semantic tokens reference core tokens (not hardcoded hex).
+*/
+
+:root {
+  /* ==========================================================
+     Color: brand
+     ========================================================== */
+  --color-brand-25: #f5f5ff;
+  --color-brand-50: #e8e9ff;
+  --color-brand-75: #e2e4ff;
+  --color-brand-100: #d6d9fc;
+  --color-brand-200: #b9b9f9;
+  --color-brand-300: #9a9afe;
+  --color-brand-400: #7f7dfc;
+  --color-brand-500: #665efd;
+  --color-brand-600: #533afd;
+  --color-brand-700: #4032c8;
+  --color-brand-800: #2e2b8c;
+  --color-brand-900: #1c1e54;
+
+  /* ==========================================================
+     Color: neutral
+     ========================================================== */
+  --color-neutral-0: #fff;
+  --color-neutral-25: #f8fafd;
+  --color-neutral-50: #e5edf5;
+  --color-neutral-100: #d4dee9;
+  --color-neutral-200: #bac8da;
+  --color-neutral-300: #95a4ba;
+  --color-neutral-400: #7d8ba4;
+  --color-neutral-500: #64748d;
+  --color-neutral-600: #50617a;
+  --color-neutral-700: #3c4f69;
+  --color-neutral-800: #273951;
+  --color-neutral-900: #1a2c44;
+  --color-neutral-950: #11273e;
+  --color-neutral-975: #0d253d;
+  --color-neutral-990: #061b31;
+
+  /* ==========================================================
+     Color: accent (gradients + charm icons)
+     ========================================================== */
+  --color-accent-ruby-400: #ea2261;
+  --color-accent-orange-350: #ff6118;
+  --color-accent-magenta-350: #f44bcc;
+  --color-accent-lemon-200: #f9b900;
+
+  /* ==========================================================
+     Color: semantic — reference core tokens
+     ========================================================== */
+  --color-bg-quiet: var(--color-neutral-0);
+  --color-bg-subdued: var(--color-neutral-25);
+  --color-bg-emphasized: var(--color-neutral-50);
+  --color-text-solid: var(--color-neutral-990);
+  --color-text-soft: var(--color-neutral-600);
+  --color-text-subdued: var(--color-neutral-500);
+  --color-text-quiet: var(--color-neutral-400);
+  --color-border-quiet: var(--color-neutral-50);
+  --color-border-subdued: var(--color-neutral-100);
+  --color-border-solid: var(--color-neutral-800);
+
+  /* ==========================================================
+     Type: family & weight
+     Inter is used as an open-source stand-in for Stripe's Sohne.
+     ========================================================== */
+  --font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family-code: "SourceCodePro", "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
+  --font-weight-normal: 300;
+  --font-weight-bold: 400;
+
+  /* ==========================================================
+     Type: heading scale — mobile baseline
+     (overridden at 640px and 940px below)
+     ========================================================== */
+  --font-heading-md-size: 1.25rem;
+  --font-heading-md-lineHeight: 1.2;
+  --font-heading-md-letterSpacing: -0.01em;
+
+  --font-heading-lg-size: 1.375rem;
+  --font-heading-lg-lineHeight: 1.2;
+  --font-heading-lg-letterSpacing: -0.01em;
+
+  --font-heading-xl-size: 1.75rem;
+  --font-heading-xl-lineHeight: 1.07;
+  --font-heading-xl-letterSpacing: -0.01em;
+
+  --font-heading-xxl-size: 2.125rem;
+  --font-heading-xxl-lineHeight: 1.03;
+  --font-heading-xxl-letterSpacing: -0.02em;
+
+  --font-heading-hero-md-size: 1.625rem;
+  --font-heading-hero-md-lineHeight: 1.12;
+  --font-heading-hero-md-letterSpacing: -0.01em;
+
+  --font-heading-hero-lg-size: 1.75rem;
+  --font-heading-hero-lg-lineHeight: 1.1;
+  --font-heading-hero-lg-letterSpacing: -0.01em;
+
+  /* ==========================================================
+     Type: body scale
+     ========================================================== */
+  --font-text-xs-size: 0.75rem;
+  --font-text-xs-lineHeight: 1.45;
+  --font-text-sm-size: 0.875rem;
+  --font-text-sm-lineHeight: 1.4;
+  --font-text-md-size: 1rem;
+  --font-text-md-lineHeight: 1.4;
+  --font-text-lg-size: 1.125rem;
+  --font-text-lg-lineHeight: 1.35;
+  --font-text-xl-size: 1.125rem;
+  --font-text-xl-lineHeight: 1.4;
+
+  /* ==========================================================
+     Type: eyebrow (small-caps label above headings)
+     Sourced from Stripe's .hero-section__eyebrow-label
+     ========================================================== */
+  --font-eyebrow-size: 0.75rem;
+  --font-eyebrow-lineHeight: 1.35;
+  --font-eyebrow-weight: 400;
+  --font-eyebrow-letterSpacing: 0em;
+
+  /* ==========================================================
+     Space scale
+     ========================================================== */
+  --space-0: 0px;
+  --space-25: 2px;
+  --space-50: 4px;
+  --space-75: 6px;
+  --space-100: 8px;
+  --space-150: 12px;
+  --space-200: 16px;
+  --space-250: 20px;
+  --space-300: 24px;
+  --space-350: 28px;
+  --space-400: 32px;
+  --space-450: 36px;
+  --space-500: 40px;
+  --space-550: 44px;
+  --space-600: 48px;
+  --space-700: 56px;
+  --space-800: 64px;
+  --space-900: 72px;
+  --space-1000: 80px;
+  --space-1200: 96px;
+  --space-1400: 112px;
+  --space-1600: 128px;
+
+  /* ==========================================================
+     Radius
+     ========================================================== */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 16px;
+  --radius-round: 99999px;
+
+  /* ==========================================================
+     Shadow — two-layer format from Stripe
+     ========================================================== */
+  --shadow-xs: 0 2px 10px 0 rgba(0, 55, 112, 0.06), 0 1px 4px 0 rgba(0, 59, 137, 0.04);
+  --shadow-sm: 0 5px 14px 0 rgba(0, 55, 112, 0.08), 0 2px 8px 0 rgba(0, 59, 137, 0.05);
+  --shadow-md: 0 6px 22px 0 rgba(0, 55, 112, 0.10), 0 4px 8px 0 rgba(0, 59, 137, 0.02);
+  --shadow-lg: 0 15px 40px -2px rgba(0, 55, 112, 0.10), 0 5px 20px -2px rgba(0, 59, 137, 0.04);
+  --shadow-xl: 0 20px 80px -16px rgba(0, 55, 112, 0.14), 0 10px 60px -16px rgba(0, 59, 137, 0.06);
+
+  /* ==========================================================
+     Motion
+     ========================================================== */
+  --ease-standard: cubic-bezier(.25, 1, .5, 1);
+  --ease-expressive: cubic-bezier(.65, 0, .35, 1);
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 500ms;
+
+  /* ==========================================================
+     Focus
+     ========================================================== */
+  --focus-outline: 3px solid rgba(99, 91, 255, .4);
+  --focus-outline-offset: 3px;
+
+  /* ==========================================================
+     Layout
+     ========================================================== */
+  --layout-max-width: 1264px;
+  --layout-page-margin: 16px;
+  --layout-content-margin: 16px;
+  --layout-gap: 16px;
+  --layout-columns: 12;
+
+  /* ==========================================================
+     Navigation
+     ========================================================== */
+  --nav-height: 76px;
+  --nav-bg: var(--color-neutral-0);
+  --nav-border: var(--color-border-quiet);
+
+  /* ==========================================================
+     Accent gradients
+     ========================================================== */
+  --gradient-brand: linear-gradient(270deg, #ffd601 -380%, #ee30fb -60%, #635bff 110%);
+  --gradient-brand-2: linear-gradient(270deg, #ffd601 -265%, #ee30fb 60%, #635bff 240%);
+  --gradient-brand-3: linear-gradient(270deg, #ffd601 -20%, #ee30fb 190%, #635bff 365%);
+  --gradient-section-divider: linear-gradient(
+    90deg,
+    var(--color-brand-600) 0,
+    var(--color-brand-600) 20%,
+    var(--color-accent-magenta-350) 40%,
+    var(--color-accent-orange-350) 60%,
+    var(--color-accent-orange-350) 100%
+  );
+}
+
+/* ============================================================
+   Type scale: 640px and up
+   ============================================================ */
+@media (min-width: 640px) {
+  :root {
+    --font-heading-md-size: 1.375rem;
+    --font-heading-md-lineHeight: 1.1;
+
+    --font-heading-lg-size: 1.75rem;
+    --font-heading-lg-lineHeight: 1.07;
+
+    --font-heading-xl-size: 2.125rem;
+    --font-heading-xl-lineHeight: 1.05;
+    --font-heading-xl-letterSpacing: -0.02em;
+
+    --font-heading-xxl-size: 3rem;
+    --font-heading-xxl-lineHeight: 1.03;
+
+    --font-heading-hero-md-size: 2rem;
+    --font-heading-hero-md-lineHeight: 1.1;
+    --font-heading-hero-md-letterSpacing: -0.02em;
+
+    --font-heading-hero-lg-size: 2.5rem;
+    --font-heading-hero-lg-lineHeight: 1.12;
+    --font-heading-hero-lg-letterSpacing: -0.02em;
+
+    --font-text-lg-size: 1.125rem;
+    --font-text-xl-size: 1.125rem;
+
+    --layout-page-margin: 16px;
+    --layout-content-margin: 16px;
+    --layout-gap: 16px;
+    --layout-columns: 8;
+  }
+}
+
+/* ============================================================
+   Type scale: 940px and up
+   ============================================================ */
+@media (min-width: 940px) {
+  :root {
+    --font-heading-md-size: 1.625rem;
+    --font-heading-md-lineHeight: 1.12;
+
+    --font-heading-lg-size: 2rem;
+    --font-heading-lg-lineHeight: 1.1;
+
+    --font-heading-xl-size: 3rem;
+    --font-heading-xl-lineHeight: 1.03;
+
+    --font-heading-xxl-size: 3.5rem;
+    --font-heading-xxl-lineHeight: 1.03;
+    --font-heading-xxl-letterSpacing: -0.025em;
+
+    --font-heading-hero-md-size: 2.25rem;
+    --font-heading-hero-md-lineHeight: 1.05;
+
+    --font-heading-hero-lg-size: 2.5rem;
+    --font-heading-hero-lg-lineHeight: 1.2;
+
+    --font-text-lg-size: 1.125rem;
+    --font-text-xl-size: 1.25rem;
+
+    --layout-page-margin: 16px;
+    --layout-content-margin: 16px;
+    --layout-gap: 16px;
+    --layout-columns: 12;
+  }
+}

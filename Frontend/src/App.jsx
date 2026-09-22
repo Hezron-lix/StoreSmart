@@ -12,11 +12,11 @@ import {
   ROLE_LABELS,
   getSession,
   clearSession,
-} from "./auth";
+} from "./api";
 
 import "./App.css";
 
-const RoleContext = createContext({
+export const RoleContext = createContext({
   role: ROLES.VIEWER,
   user: null,
   logout: () => {},
@@ -56,22 +56,21 @@ export default function App() {
     >
       <div className="app-shell">
         <header className="app-header">
-          <div className="app-header__brand">
-            <span className="app-header__title">
-              StorageWise AI
-            </span>
-
-            <span className="app-header__subtitle">
-              Data Governance Console
-            </span>
+          <div className="app-header__inner">
+            <div className="app-header__brand">
+              <span className="app-header__mark" aria-hidden="true">
+                S
+              </span>
+              <div className="app-header__brand-text">
+                <span className="app-header__title">StoreSmart</span>
+                <span className="app-header__subtitle">
+                  Storage governance console
+                </span>
+              </div>
+            </div>
+            <UserBadge user={user} onLogout={logout} />
           </div>
-
-          <UserBadge
-            user={user}
-            onLogout={logout}
-          />
         </header>
-
         <main className="app-main">
           <Dashboard user={user} />
         </main>
@@ -80,25 +79,16 @@ export default function App() {
   );
 }
 
-function UserBadge({
-  user,
-  onLogout,
-}) {
+function UserBadge({ user, onLogout }) {
   return (
     <div className="user-badge">
-      <span className="user-badge__name">
-        {user.username}
-      </span>
-
-      <span
-        className={`user-badge__role user-badge__role--${user.role}`}
-      >
+      <span className="user-badge__name">{user.username}</span>
+      <span className="hds-tag hds-tag--brand">
         {ROLE_LABELS[user.role]}
       </span>
-
       <button
         type="button"
-        className="user-badge__logout"
+        className="hds-button hds-button--secondary hds-button--small"
         onClick={onLogout}
       >
         Log out
