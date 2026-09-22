@@ -1,763 +1,377 @@
-/* components/ActionCenter.css */
+/* components/ActionCenter.css — Action Center list + actions */
+
+/* ============================================================
+   CONTAINER
+   ============================================================ */
 
 .action-center {
-  background: var(--swa-surface);
-
-  border:
-    1px solid
-    var(--swa-border);
-
-  border-radius:
-    var(--swa-radius);
-
-  padding:
-    var(--swa-space-lg);
-
+  background: var(--color-bg-quiet);
+  border: 1px solid var(--color-border-quiet);
+  border-radius: var(--radius-md);
+  padding: var(--space-500);
+  box-shadow: var(--shadow-xs);
   width: 100%;
-
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-300);
 }
-
 
 /* ============================================================
    STATES
-============================================================ */
+   ============================================================ */
 
 .action-center--loading,
 .action-center--error,
 .action-center--empty {
-  color:
-    var(--swa-text-secondary);
-
-  font-size:
-    0.9rem;
+  color: var(--color-text-soft);
+  font-size: var(--font-text-sm-size);
+  line-height: var(--font-text-sm-lineHeight);
+  padding: var(--space-800) var(--space-500);
+  text-align: center;
 }
-
 
 .action-center--error {
-  color:
-    var(--swa-signal-critical);
+  color: #a01400;
 }
-
 
 /* ============================================================
    HEADER
-============================================================ */
+   ============================================================ */
 
 .action-center__header {
   display: flex;
-
   flex-direction: column;
-
-  gap: 2px;
-
-  margin-bottom:
-    var(--swa-space-md);
+  gap: var(--space-25);
 }
-
 
 .action-center__title {
-  font-size:
-    0.95rem;
-
-  font-weight:
-    600;
-
-  color:
-    var(--swa-text-primary);
+  font-size: var(--font-eyebrow-size);
+  font-weight: var(--font-eyebrow-weight);
+  line-height: var(--font-eyebrow-lineHeight);
+  letter-spacing: var(--font-eyebrow-letterSpacing);
+  color: var(--color-text-subdued);
+  text-transform: uppercase;
 }
-
 
 .action-center__subtitle {
-  margin-left: 2px;
-
-  font-size:
-    0.8rem;
-
-  color:
-    var(--swa-text-secondary);
+  font-size: var(--font-text-sm-size);
+  line-height: var(--font-text-sm-lineHeight);
+  color: var(--color-text-soft);
 }
 
+.action-center__hint {
+  margin: 0;
+  max-width: 72ch;
+}
 
 /* ============================================================
    SUMMARY
-============================================================ */
+   ============================================================ */
 
 .action-center__summary {
-  text-align:
-    center;
-
-  margin-top:
-    6px;
-
-  margin-bottom:
-    10px;
-
-  font-size:
-    1rem;
-
-  color:
-    var(--swa-text-primary);
+  font-size: var(--font-text-sm-size);
+  color: var(--color-text-soft);
 }
 
+.action-center__summary strong {
+  color: var(--color-text-solid);
+  font-weight: var(--font-weight-bold);
+}
 
 /* ============================================================
-   FORMAT SELECTORS
-============================================================ */
+   FORMAT FILTERS
+   ============================================================ */
 
 .action-center__formats {
   display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
   flex-wrap: wrap;
-
-  gap: 7px;
-
-  margin:
-    12px 0
-    20px;
+  gap: var(--space-100);
 }
-
 
 .action-center__format {
   display: inline-flex;
-
   align-items: center;
-
-  justify-content: center;
-
-  gap: 5px;
-
-  min-width: 100px;
-
-  padding:
-    7px 12px;
-
-  border:
-    1px solid
-    var(--swa-border);
-
-  border-radius:
-    6px;
-
-  background:
-    var(--swa-surface-raised);
-
-  color:
-    var(--swa-text-secondary);
-
-  font-family:
-    var(--swa-font-sans);
-
-  font-size:
-    0.78rem;
-
-  cursor:
-    pointer;
-
+  gap: var(--space-100);
+  padding: var(--space-100) var(--space-200);
+  font-family: var(--font-family);
+  font-size: var(--font-text-sm-size);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-soft);
+  background: var(--color-bg-subdued);
+  border: 1px solid var(--color-border-quiet);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
   transition:
-    border-color 0.15s ease,
-    color 0.15s ease,
-    background 0.15s ease;
+    background-color var(--duration-base) var(--ease-standard),
+    color var(--duration-base) var(--ease-standard),
+    border-color var(--duration-base) var(--ease-standard);
 }
-
 
 .action-center__format:hover {
-  color:
-    var(--swa-text-primary);
+  color: var(--color-text-solid);
+  border-color: var(--color-border-subdued);
 }
-
 
 .action-center__format span {
-  font-size:
-    0.72rem;
-
-  opacity:
-    0.72;
+  font-size: var(--font-text-xs-size);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-text-subdued);
+  padding-inline-start: var(--space-50);
+  border-inline-start: 1px dashed var(--color-border-quiet);
 }
-
 
 .action-center__format--active {
-  color:
-    var(--swa-text-primary);
-
-  border-color:
-    var(--swa-signal-neutral);
+  color: var(--color-brand-700);
+  background: var(--color-brand-50);
+  border-color: var(--color-brand-300);
 }
 
-
-/* ============================================================
-   TABLE WRAPPER
-============================================================ */
-
-.action-center__table-wrap {
-  width: 100%;
-
-  overflow-x: auto;
+.action-center__format--active span {
+  color: var(--color-brand-600);
+  border-color: var(--color-brand-200);
 }
 
+.action-center__format:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
+}
 
 /* ============================================================
    TABLE
-============================================================ */
+   ============================================================ */
+
+.action-center__table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--radius-sm);
+}
 
 .action-center__table {
   width: 100%;
-
-  border-collapse:
-    collapse;
-
-  table-layout:
-    fixed;
-
-  font-size:
-    0.85rem;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: var(--font-text-sm-size);
 }
-
 
 .action-center__table th,
 .action-center__table td {
-  box-sizing:
-    border-box;
-
-  vertical-align:
-    middle;
-
-  border-bottom:
-    1px solid
-    var(--swa-border);
+  box-sizing: border-box;
+  vertical-align: middle;
+  padding: var(--space-150) var(--space-100);
+  border-bottom: 1px dashed var(--color-border-quiet);
 }
-
-
-/* ============================================================
-   TABLE HEADER
-============================================================ */
 
 .action-center__table th {
-  padding:
-    12px 10px;
-
-  color:
-    var(--swa-text-secondary);
-
-  font-weight:
-    500;
-
-  font-size:
-    0.75rem;
-
-  white-space:
-    nowrap;
+  text-align: left;
+  color: var(--color-text-subdued);
+  font-size: var(--font-text-xs-size);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
 }
-
-
-/* ============================================================
-   TABLE BODY
-============================================================ */
 
 .action-center__table td {
-  padding:
-    14px 10px;
-
-  color:
-    var(--swa-text-primary);
+  color: var(--color-text-soft);
 }
 
+.action-center__table tr:last-child td {
+  border-bottom: none;
+}
 
-/* ============================================================
-   COLUMN WIDTHS + ALIGNMENT
-============================================================ */
-
-/* FILE */
+/* Column widths */
 
 .action-center__table th:nth-child(1),
-.action-center__table td:nth-child(1) {
-  width: 21%;
-
-  text-align:
-    left;
-}
-
-
-/* SOURCE */
+.action-center__table td:nth-child(1) { width: 21%; text-align: left; }
 
 .action-center__table th:nth-child(2),
-.action-center__table td:nth-child(2) {
-  width: 9%;
-
-  text-align:
-    center;
-}
-
-
-/* DEPARTMENT */
+.action-center__table td:nth-child(2) { width: 9%; text-align: center; }
 
 .action-center__table th:nth-child(3),
-.action-center__table td:nth-child(3) {
-  width: 13%;
-
-  text-align:
-    center;
-}
-
-
-/* SIZE */
+.action-center__table td:nth-child(3) { width: 13%; text-align: center; }
 
 .action-center__table th:nth-child(4),
-.action-center__table td:nth-child(4) {
-  width: 11%;
-
-  text-align:
-    center;
-}
-
-
-/* SCORE */
+.action-center__table td:nth-child(4) { width: 11%; text-align: center; }
 
 .action-center__table th:nth-child(5),
-.action-center__table td:nth-child(5) {
-  width: 9%;
-
-  text-align:
-    center;
-}
-
-
-/* SAVES */
+.action-center__table td:nth-child(5) { width: 9%; text-align: center; }
 
 .action-center__table th:nth-child(6),
-.action-center__table td:nth-child(6) {
-  width: 10%;
-
-  text-align:
-    center;
-}
-
-
-/* RECOMMENDED */
+.action-center__table td:nth-child(6) { width: 10%; text-align: center; }
 
 .action-center__table th:nth-child(7),
-.action-center__table td:nth-child(7) {
-  width: 15%;
-
-  text-align:
-    center;
-}
-
-
-/* ACTION */
+.action-center__table td:nth-child(7) { width: 15%; text-align: center; }
 
 .action-center__table th:nth-child(8),
-.action-center__table td:nth-child(8) {
-  width: 12%;
+.action-center__table td:nth-child(8) { width: 12%; text-align: center; }
 
-  text-align:
-    center;
-}
-
-
-/* ============================================================
-   FILE COLUMN
-============================================================ */
+/* File column */
 
 .action-center__file {
-  color:
-    var(--swa-text-primary);
-
-  text-align:
-    left !important;
+  text-align: left !important;
+  color: var(--color-text-solid) !important;
 }
-
 
 .action-center__file > div {
-  font-weight:
-    500;
-
-  white-space:
-    nowrap;
-
-  overflow:
-    hidden;
-
-  text-overflow:
-    ellipsis;
+  font-weight: var(--font-weight-bold);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-
 
 .action-center__file small {
-  display:
-    block;
-
-  margin-top:
-    5px;
-
-  color:
-    var(--swa-text-secondary);
-
-  font-size:
-    0.72rem;
-
-  white-space:
-    nowrap;
-
-  overflow:
-    hidden;
-
-  text-overflow:
-    ellipsis;
+  display: block;
+  margin-top: var(--space-25);
+  color: var(--color-text-subdued);
+  font-family: var(--font-family-code);
+  font-size: var(--font-text-xs-size);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-
-/* ============================================================
-   MONOSPACE DATA
-============================================================ */
+/* Monospace data cells */
 
 .action-center__mono {
-  font-family:
-    var(--swa-font-mono);
-
-  color:
-    var(--swa-text-secondary);
-
-  white-space:
-    nowrap;
+  font-family: var(--font-family-code);
+  color: var(--color-text-solid);
+  white-space: nowrap;
 }
 
-
-/* ============================================================
-   RECOMMENDATION
-============================================================ */
+/* Recommended action */
 
 .action-center__recommended {
-  color:
-    var(--swa-signal-warning) !important;
-
-  font-weight:
-    500;
-
-  text-align:
-    center;
-
-  white-space:
-    nowrap;
+  color: #9b6829 !important;
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  white-space: nowrap;
 }
-
 
 /* ============================================================
-   GENERIC BUTTON
-============================================================ */
-
-.action-center__button {
-  background:
-    var(--swa-signal-neutral);
-
-  color:
-    var(--swa-bg);
-
-  border:
-    none;
-
-  border-radius:
-    var(--swa-radius);
-
-  padding:
-    6px 12px;
-
-  font-size:
-    0.8rem;
-
-  font-family:
-    var(--swa-font-sans);
-
-  cursor:
-    pointer;
-
-  transition:
-    opacity 0.15s ease;
-}
-
-
-.action-center__button:hover:not(:disabled) {
-  opacity:
-    0.85;
-}
-
-
-.action-center__button:disabled {
-  opacity:
-    0.5;
-
-  cursor:
-    not-allowed;
-}
-
-
-.action-center__button:focus-visible {
-  outline:
-    2px solid
-    var(--swa-text-primary);
-
-  outline-offset:
-    2px;
-}
-
-
-/* ============================================================
-   SUPER ADMIN — ACTION BUTTONS
-============================================================ */
+   ACTION BUTTONS (SUPER-ADMIN)
+   ============================================================ */
 
 .action-center__actions {
-  display: flex;
-
+  display: inline-flex;
   align-items: center;
-
   justify-content: center;
-
-  gap: 7px;
-
-  width: 100%;
+  gap: var(--space-75);
 }
-
 
 .action-center__action {
   display: inline-flex;
-
   align-items: center;
-
   justify-content: center;
-
   min-width: 48px;
-
-  min-height: 34px;
-
-  padding:
-    6px 8px;
-
-  border-radius:
-    5px;
-
-  font-family:
-    var(--swa-font-sans);
-
-  font-size:
-    0.7rem;
-
-  font-weight:
-    700;
-
-  letter-spacing:
-    0.04em;
-
-  cursor:
-    pointer;
-
+  min-height: 32px;
+  padding: var(--space-75) var(--space-150);
+  font-family: var(--font-family);
+  font-size: var(--font-text-xs-size);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.04em;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
   transition:
-    opacity 0.15s ease,
-    transform 0.15s ease,
-    border-color 0.15s ease,
-    background 0.15s ease;
+    background-color var(--duration-base) var(--ease-standard),
+    color var(--duration-base) var(--ease-standard),
+    border-color var(--duration-base) var(--ease-standard);
 }
 
-
-.action-center__action:hover:not(:disabled) {
-  transform:
-    translateY(-1px);
+.action-center__action:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
 }
-
 
 .action-center__action:disabled {
-  opacity:
-    0.45;
-
-  cursor:
-    not-allowed;
-
-  transform:
-    none;
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
-
-/* ============================================================
-   DELETE
-============================================================ */
+/* DELETE — uses ruby accent to signal destructive action */
 
 .action-center__action--delete {
-  color:
-    #ff6b6b;
-
-  background:
-    rgba(
-      255,
-      82,
-      82,
-      0.08
-    );
-
-  border:
-    1px solid
-    rgba(
-      255,
-      82,
-      82,
-      0.45
-    );
+  color: var(--color-accent-ruby-400);
+  background: transparent;
+  border: 1px solid var(--color-accent-ruby-400);
 }
-
 
 .action-center__action--delete:hover:not(:disabled) {
-  border-color:
-    #ff6b6b;
-
-  background:
-    rgba(
-      255,
-      82,
-      82,
-      0.14
-    );
+  background: var(--color-accent-ruby-400);
+  color: var(--color-neutral-0);
 }
 
-
-/* ============================================================
-   COMPRESS
-============================================================ */
+/* COMPRESS — uses brand accent for constructive action */
 
 .action-center__action--compress {
-  color:
-    #57a8ff;
-
-  background:
-    rgba(
-      87,
-      168,
-      255,
-      0.08
-    );
-
-  border:
-    1px solid
-    rgba(
-      87,
-      168,
-      255,
-      0.45
-    );
+  color: var(--color-brand-600);
+  background: transparent;
+  border: 1px solid var(--color-brand-400);
 }
-
 
 .action-center__action--compress:hover:not(:disabled) {
-  border-color:
-    #57a8ff;
-
-  background:
-    rgba(
-      87,
-      168,
-      255,
-      0.14
-    );
+  background: var(--color-brand-600);
+  color: var(--color-neutral-0);
+  border-color: var(--color-brand-600);
 }
-
 
 /* ============================================================
    MESSAGE ROW
-============================================================ */
+   ============================================================ */
 
 .action-center__message-row td {
-  padding-top:
-    5px !important;
-
-  padding-bottom:
-    10px !important;
-
-  text-align:
-    left !important;
-
-  border-bottom:
-    1px solid
-    var(--swa-border);
+  padding-block: var(--space-100) !important;
+  padding-inline: var(--space-100) !important;
+  text-align: left !important;
+  border-bottom: 1px dashed var(--color-border-quiet);
 }
-
 
 .action-center__message {
-  font-size:
-    0.75rem;
-
-  font-family:
-    var(--swa-font-mono);
+  font-family: var(--font-family-code);
+  font-size: var(--font-text-xs-size);
+  line-height: var(--font-text-xs-lineHeight);
 }
-
 
 .action-center__message--blocked,
 .action-center__message--error {
-  color:
-    #ff7777;
+  color: #a01400;
 }
-
 
 .action-center__message--warning {
-  color:
-    #f6ad55;
+  color: #9b6829;
 }
-
 
 .action-center__message--success {
-  color:
-    #67d391;
+  color: #006f3a;
 }
-
 
 /* ============================================================
-   EMPTY
-============================================================ */
+   EMPTY STATE
+   ============================================================ */
 
 .action-center__empty {
-  padding:
-    24px 0;
-
-  text-align:
-    center;
-
-  color:
-    var(--swa-text-secondary);
-
-  font-size:
-    0.85rem;
+  padding: var(--space-800) var(--space-200);
+  text-align: center;
+  color: var(--color-text-subdued);
+  font-size: var(--font-text-sm-size);
 }
-
 
 /* ============================================================
    RESPONSIVE
-============================================================ */
+   ============================================================ */
 
-@media (
-  max-width: 1000px
-) {
-
+@media (max-width: 939px) {
   .action-center__table {
-    min-width:
-      1050px;
+    min-width: 1000px;
   }
-
 }
 
-
-@media (
-  max-width: 600px
-) {
-
+@media (max-width: 639px) {
   .action-center {
-    padding:
-      var(--swa-space-md);
+    padding: var(--space-300);
   }
-
 
   .action-center__format {
-    min-width:
-      85px;
+    min-width: 85px;
   }
-
 }

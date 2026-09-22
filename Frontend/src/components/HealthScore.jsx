@@ -7,12 +7,24 @@ import { getHealthScore, ApiError } from "../api";
 import "./HealthScore.css";
 
 const GRADE_COLOR = {
-  A: "var(--swa-signal-good)",
-  B: "var(--swa-signal-good)",
-  C: "var(--swa-signal-warning)",
-  D: "var(--swa-signal-warning)",
-  F: "var(--swa-signal-critical)",
+  A: "#006f3a",
+  B: "#006f3a",
+  C: "#9b6829",
+  D: "#9b6829",
+  F: "#a01400",
 };
+
+function interpret(data) {
+  if (!data) return "";
+  const pct = Math.round(data.score * 100);
+  if (data.grade === "A" || data.grade === "B") {
+    return "Storage is healthy. Continue monitoring.";
+  }
+  if (data.grade === "C") {
+    return "Storage is fair. Consider compressing or removing stale files.";
+  }
+  return `Storage is critical (${pct}% of capacity usable). Compress or remove files soon.`;
+}
 
 export default function HealthScore() {
   const [data, setData] = useState(null);
@@ -60,7 +72,7 @@ export default function HealthScore() {
     );
   }
 
-  const gradeColor = GRADE_COLOR[data.grade] || "var(--swa-text-secondary)";
+  const gradeColor = GRADE_COLOR[data.grade] || "var(--color-text-soft)";
   const trendDirection = getTrendDirection(data.trend);
 
   return (
@@ -72,6 +84,10 @@ export default function HealthScore() {
         </span>
       </div>
 
+      <p className="health-score__hint hds-text--sm hds-text--muted">
+        Graded A–F on capacity, compression efficiency, and runway stability.
+      </p>
+
       <div className="health-score__bar-track">
         <div
           className="health-score__bar-fill"
@@ -82,19 +98,23 @@ export default function HealthScore() {
 
       <div className="health-score__metrics">
         <Metric
-          label="Capacity"
+          label="Capacity (% free)"
           value={`${Math.round(data.capacity.value * 100)}% free`}
           detail={`${data.capacity.usedGb} GB / ${data.capacity.totalGb} GB used`}
         />
         <Metric
-          label="Efficiency"
+          label="Efficiency (savings %)"
           value={`${Math.round(data.efficiency.value * 100)}% saveable`}
         />
         <Metric
-          label="Stability"
+          label="Stability (days to full)"
           value={`${data.stability.daysToFull} days to full`}
         />
       </div>
+
+      <p className="health-score__interpret hds-text--sm hds-text--solid">
+        {interpret(data)}
+      </p>
 
       <div className="health-score__trend">
         <span>30-Day Trend:</span>

@@ -77,20 +77,25 @@ export default function TimeTravelChart() {
         <span className="time-travel__date">{formatDate(selectedSnapshot?.date)}</span>
       </div>
 
+      <p className="time-travel__hint hds-text--sm hds-text--muted">
+        Drag the slider to scrub through historical storage snapshots. The chart
+        highlights the selected date.
+      </p>
+
       <ResponsiveContainer width="100%" height={200}>
         <LineChart data={history} margin={{ top: 8, right: 16, left: 0, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="var(--swa-border)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border-quiet)" />
           <XAxis
             dataKey="date"
-            tick={{ fill: "var(--swa-text-secondary)", fontSize: 11 }}
+            tick={{ fill: "var(--color-text-soft)", fontSize: 11 }}
             tickFormatter={formatDate}
           />
-          <YAxis tick={{ fill: "var(--swa-text-secondary)", fontSize: 11 }} />
+          <YAxis tick={{ fill: "var(--color-text-soft)", fontSize: 11 }} />
           <Tooltip
             contentStyle={{
-              background: "var(--swa-surface-raised)",
-              border: "1px solid var(--swa-border)",
-              borderRadius: "var(--swa-radius)",
+              background: "var(--color-bg-quiet)",
+              border: "1px solid var(--color-border-quiet)",
+              borderRadius: "var(--radius-md)",
               fontSize: "0.8rem",
             }}
             labelFormatter={formatDate}
@@ -99,7 +104,7 @@ export default function TimeTravelChart() {
             type="monotone"
             dataKey="usedGb"
             name="Used GB"
-            stroke="var(--swa-signal-neutral)"
+            stroke="var(--color-brand-500)"
             strokeWidth={2}
             dot={false}
           />
@@ -108,8 +113,8 @@ export default function TimeTravelChart() {
               x={selectedSnapshot.date}
               y={selectedSnapshot.usedGb}
               r={5}
-              fill="var(--swa-signal-warning)"
-              stroke="var(--swa-surface)"
+              fill="#9b6829"
+              stroke="var(--color-bg-quiet)"
               strokeWidth={2}
             />
           )}
@@ -128,8 +133,12 @@ export default function TimeTravelChart() {
 
       {selectedSnapshot && (
         <div className="time-travel__snapshot">
+          <span className="time-travel__snapshot-label hds-text--xs hds-text--muted">
+            Selected snapshot
+          </span>
           <span>
-            <strong>{selectedSnapshot.usedGb} GB</strong> used on {formatDate(selectedSnapshot.date)}
+            <strong>{selectedSnapshot.usedGb} GB</strong> used on{" "}
+            {formatDate(selectedSnapshot.date)}
           </span>
         </div>
       )}

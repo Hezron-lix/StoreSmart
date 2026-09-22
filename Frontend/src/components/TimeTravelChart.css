@@ -1,60 +1,82 @@
-/* components/TimeTravelChart.css */
+/* components/TimeTravelChart.css — Operational View time-travel scrubber */
 
 .time-travel {
-  background: var(--swa-surface);
-  border: 1px solid var(--swa-border);
-  border-radius: var(--swa-radius);
-  padding: var(--swa-space-lg);
+  background: var(--color-bg-quiet);
+  border: 1px solid var(--color-border-quiet);
+  border-radius: var(--radius-md);
+  padding: var(--space-500);
+  box-shadow: var(--shadow-xs);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-300);
 }
 
 .time-travel--loading,
 .time-travel--error {
-  color: var(--swa-text-secondary);
-  font-size: 0.9rem;
+  color: var(--color-text-soft);
+  font-size: var(--font-text-sm-size);
+  line-height: var(--font-text-sm-lineHeight);
 }
 
 .time-travel--error {
-  color: var(--swa-signal-critical);
+  color: #a01400;
 }
 
 .time-travel__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: var(--swa-space-md);
+  gap: var(--space-200);
 }
 
 .time-travel__title {
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: var(--font-eyebrow-size);
+  font-weight: var(--font-eyebrow-weight);
+  line-height: var(--font-eyebrow-lineHeight);
+  letter-spacing: var(--font-eyebrow-letterSpacing);
+  color: var(--color-text-subdued);
+  text-transform: uppercase;
 }
 
 .time-travel__date {
-  font-family: var(--swa-font-mono);
-  font-size: 0.8rem;
-  color: var(--swa-text-secondary);
+  font-family: var(--font-family-code);
+  font-size: var(--font-text-sm-size);
+  color: var(--color-text-soft);
+}
+
+.time-travel__hint {
+  margin: 0;
+  max-width: 60ch;
 }
 
 .time-travel__slider {
   width: 100%;
-  margin-top: var(--swa-space-md);
-  accent-color: var(--swa-signal-neutral);
+  accent-color: var(--color-brand-500);
   cursor: pointer;
+  margin-top: var(--space-200);
 }
 
 .time-travel__slider:focus-visible {
-  outline: 2px solid var(--swa-signal-neutral);
-  outline-offset: 2px;
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
 }
 
 .time-travel__snapshot {
-  margin-top: var(--swa-space-sm);
-  font-size: 0.85rem;
-  color: var(--swa-text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-25);
+  font-size: var(--font-text-sm-size);
+  color: var(--color-text-soft);
   text-align: center;
 }
 
+.time-travel__snapshot-label {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-subdued);
+}
+
 .time-travel__snapshot strong {
-  color: var(--swa-text-primary);
-  font-family: var(--swa-font-mono);
+  color: var(--color-text-solid);
+  font-family: var(--font-family-code);
 }

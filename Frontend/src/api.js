@@ -38,7 +38,7 @@ export class ApiError extends Error {
 // TOKEN
 // ============================================================
 
-function getToken() {
+export function getToken() {
 
   return localStorage.getItem(
     "storagewise_token"
@@ -1566,4 +1566,137 @@ export async function getAuditLog() {
       Boolean
     );
 
+}
+
+// ============================================================
+// ROLES
+// ============================================================
+
+export const ROLES = {
+  VIEWER: "Viewer",
+  SUPER_ADMIN: "Super-Admin",
+};
+
+export const ROLE_LABELS = {
+  [ROLES.VIEWER]: "Viewer",
+  [ROLES.SUPER_ADMIN]: "Super-Admin",
+};
+
+// ============================================================
+// AUTHENTICATION
+// ============================================================
+
+/**
+ * Sign up a new user. Returns:
+ *   { status: "success", user, token }
+ *   { status: "exists" }
+ *   { status: "error", message }
+ */
+export async function signup({ username, password, role }) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/auth/signup`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password, role }),
+    });
+
+    const data = await response.json();
+
+    if (response.status === 409) {
+      return { status: "exists" };
+    }
+
+    if (!response.ok) {
+      return {
+        status: "error",
+        message: data.message || data.detail || "Unable to create account.",
+      };
+    }
+
+    saveSession(data.user, data.token);
+    return { status: "success", user: data.user, token: data.token };
+  } catch (error) {
+    console.error("Signup error:", error);
+    return { status: "error", message: "Unable to connect to backend." };
+  }
+}
+
+/**
+ * Log in an existing user. Returns:
+ *   { status: "success", user, token }
+ *   { status: "not_found" }
+ *   { status: "error", message }
+ */
+export async function login({ username, password }) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+
+    const data = await response.json();
+
+    if (response.status === 404) {
+      return { status: "not_found" };
+    }
+
+    if (response.status === 401) {
+      return { status: "error", message: "Incorrect password." };
+    }
+
+    if (!response.ok) {
+      return {
+        status: "error",
+        message: data.message || data.detail || "Login failed.",
+      };
+    }
+
+    saveSession(data.user, data.token);
+    return { status: "success", user: data.user, token: data.token };
+  } catch (error) {
+    console.error("Login error:", error);
+    return { status: "error", message: "Unable to connect to backend." };
+  }
+}
+
+// ============================================================
+// SESSION
+// ============================================================
+
+function saveSession(user, token) {
+  if (token) {
+    localStorage.setItem("storagewise_token", token);
+  }
+  if (user) {
+    localStorage.setItem("storagewise_user", JSON.stringify(user));
+  }
+}
+
+export function getCurrentUser() {
+  const storedUser = localStorage.getItem("storagewise_user");
+  if (!storedUser) return null;
+  try {
+    return JSON.parse(storedUser);
+  } catch (error) {
+    console.error("Invalid stored user session:", error);
+    localStorage.removeItem("storagewise_user");
+    return null;
+  }
+}
+
+export function getSession() {
+  const user = getCurrentUser();
+  const token = getToken();
+  if (!user || !token) return null;
+  return user;
+}
+
+export function clearSession() {
+  localStorage.removeItem("storagewise_token");
+  localStorage.removeItem("storagewise_user");
+}
+
+export function logout() {
+  clearSession();
 }

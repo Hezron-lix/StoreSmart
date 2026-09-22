@@ -75,35 +75,50 @@ export default function ForecastChart() {
       <div className="forecast-chart__header">
         <span className="forecast-chart__title">Spike Forecast</span>
         {data.runwayToZeroDate && (
-          <span className="forecast-chart__runway">
+          <span
+            className="forecast-chart__runway"
+            title="The predicted date when storage usage will hit 100% of capacity."
+          >
             Runway-to-Zero: <strong>{formatDate(data.runwayToZeroDate)}</strong>
           </span>
         )}
       </div>
 
+      <div className="forecast-chart__meta">
+        <p className="hds-text--sm hds-text--muted">
+          Prophet-predicted storage trajectory. Runway-to-Zero is the forecast
+          date when usage reaches 100% of capacity.
+        </p>
+        <ul className="forecast-chart__legend">
+          <li><span className="forecast-chart__legend-swatch forecast-chart__legend-swatch--actual" /> Actual usage</li>
+          <li><span className="forecast-chart__legend-swatch forecast-chart__legend-swatch--predicted" /> Predicted usage</li>
+          <li><span className="forecast-chart__legend-swatch forecast-chart__legend-swatch--capacity" /> Capacity ({data.capacityGb} GB)</li>
+        </ul>
+      </div>
+
       <ResponsiveContainer width="100%" height={280}>
         <LineChart data={chartData} margin={{ top: 8, right: 16, left: 0, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="var(--swa-border)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border-quiet)" />
           <XAxis
             dataKey="date"
-            tick={{ fill: "var(--swa-text-secondary)", fontSize: 11 }}
+            tick={{ fill: "var(--color-text-soft)", fontSize: 11 }}
             tickFormatter={formatDate}
           />
           <YAxis
-            tick={{ fill: "var(--swa-text-secondary)", fontSize: 11 }}
+            tick={{ fill: "var(--color-text-soft)", fontSize: 11 }}
             label={{
               value: "GB",
               angle: -90,
               position: "insideLeft",
-              fill: "var(--swa-text-secondary)",
+              fill: "var(--color-text-soft)",
               fontSize: 11,
             }}
           />
           <Tooltip
             contentStyle={{
-              background: "var(--swa-surface-raised)",
-              border: "1px solid var(--swa-border)",
-              borderRadius: "var(--swa-radius)",
+              background: "var(--color-bg-quiet)",
+              border: "1px solid var(--color-border-quiet)",
+              borderRadius: "var(--radius-md)",
               fontSize: "0.8rem",
             }}
             labelFormatter={formatDate}
@@ -113,12 +128,12 @@ export default function ForecastChart() {
           {data.capacityGb && (
             <ReferenceLine
               y={data.capacityGb}
-              stroke="var(--swa-signal-critical)"
+              stroke="#a01400"
               strokeDasharray="4 4"
               label={{
                 value: "Capacity",
                 position: "insideTopRight",
-                fill: "var(--swa-signal-critical)",
+                fill: "#a01400",
                 fontSize: 11,
               }}
             />
@@ -128,7 +143,7 @@ export default function ForecastChart() {
             type="monotone"
             dataKey="actualGb"
             name="Actual usage"
-            stroke="var(--swa-signal-neutral)"
+            stroke="var(--color-brand-500)"
             strokeWidth={2}
             dot={false}
             connectNulls
@@ -137,7 +152,7 @@ export default function ForecastChart() {
             type="monotone"
             dataKey="predictedGb"
             name="Predicted usage"
-            stroke="var(--swa-signal-warning)"
+            stroke="#9b6829"
             strokeWidth={2}
             strokeDasharray="5 3"
             dot={false}

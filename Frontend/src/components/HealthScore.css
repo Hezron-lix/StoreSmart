@@ -1,113 +1,144 @@
-/* components/HealthScore.css */
+/* components/HealthScore.css — Executive View health score card */
 
 .health-score {
-  background: var(--swa-surface);
-  border: 1px solid var(--swa-border);
-  border-radius: var(--swa-radius);
-  padding: var(--swa-space-lg);
-  max-width: 420px;
+  background: var(--color-bg-quiet);
+  border: 1px solid var(--color-border-quiet);
+  border-radius: var(--radius-md);
+  padding: var(--space-500);
+  box-shadow: var(--shadow-xs);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-300);
+  height: 100%;
 }
 
 .health-score--loading,
 .health-score--error {
-  color: var(--swa-text-secondary);
-  font-size: 0.9rem;
+  color: var(--color-text-soft);
+  font-size: var(--font-text-sm-size);
+  line-height: var(--font-text-sm-lineHeight);
 }
 
 .health-score--error {
-  color: var(--swa-signal-critical);
+  color: #a01400;
 }
 
 .health-score__header {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  margin-bottom: var(--swa-space-sm);
+  gap: var(--space-200);
 }
 
 .health-score__label {
-  font-size: 0.85rem;
-  color: var(--swa-text-secondary);
-  text-transform: none;
+  font-size: var(--font-eyebrow-size);
+  font-weight: var(--font-eyebrow-weight);
+  line-height: var(--font-eyebrow-lineHeight);
+  letter-spacing: var(--font-eyebrow-letterSpacing);
+  color: var(--color-text-subdued);
+  text-transform: uppercase;
 }
 
 .health-score__grade {
-  font-family: var(--swa-font-mono);
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-family: var(--font-family-code);
+  font-size: var(--font-heading-xxl-size);
+  font-weight: var(--font-weight-bold);
   line-height: 1;
 }
 
 .health-score__bar-track {
-  height: 8px;
-  border-radius: 4px;
-  background: var(--swa-surface-raised);
+  height: var(--space-100);
+  border-radius: var(--radius-round);
+  background: var(--color-bg-subdued);
   overflow: hidden;
-  margin-bottom: var(--swa-space-xs);
 }
 
 .health-score__bar-fill {
   height: 100%;
-  transition: width 0.3s ease;
+  transition: width var(--duration-slow) var(--ease-standard);
 }
 
 .health-score__percent {
-  font-family: var(--swa-font-mono);
-  font-size: 0.8rem;
-  color: var(--swa-text-secondary);
+  font-family: var(--font-family-code);
+  font-size: var(--font-text-sm-size);
+  color: var(--color-text-soft);
 }
 
 .health-score__metrics {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--swa-space-md);
-  margin-top: var(--swa-space-lg);
-  padding-top: var(--swa-space-md);
-  border-top: 1px solid var(--swa-border);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-300);
+  padding-top: var(--space-300);
+  border-top: 1px dashed var(--color-border-quiet);
 }
 
 .health-score__metric {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: var(--space-25);
+  min-width: 0;
 }
 
 .health-score__metric-label {
-  font-size: 0.75rem;
-  color: var(--swa-text-secondary);
+  font-size: var(--font-text-xs-size);
+  color: var(--color-text-subdued);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .health-score__metric-value {
-  font-family: var(--swa-font-mono);
-  font-size: 0.95rem;
+  font-family: var(--font-family-code);
+  font-size: var(--font-text-md-size);
+  color: var(--color-text-solid);
+  font-weight: var(--font-weight-bold);
 }
 
 .health-score__metric-detail {
-  font-size: 0.7rem;
-  color: var(--swa-text-secondary);
+  font-size: var(--font-text-xs-size);
+  color: var(--color-text-soft);
 }
 
 .health-score__trend {
   display: flex;
   align-items: center;
-  gap: var(--swa-space-sm);
-  margin-top: var(--swa-space-md);
-  font-size: 0.8rem;
-  color: var(--swa-text-secondary);
+  gap: var(--space-100);
+  padding-top: var(--space-200);
+  border-top: 1px dashed var(--color-border-quiet);
+  font-size: var(--font-text-sm-size);
+  color: var(--color-text-soft);
 }
 
 .health-score__trend-value {
-  font-family: var(--swa-font-mono);
+  font-family: var(--font-family-code);
+  font-weight: var(--font-weight-bold);
 }
 
 .health-score__trend-value--up {
-  color: var(--swa-signal-good);
+  color: #006f3a;
 }
 
 .health-score__trend-value--down {
-  color: var(--swa-signal-critical);
+  color: #a01400;
 }
 
 .health-score__trend-value--flat {
-  color: var(--swa-text-secondary);
+  color: var(--color-text-soft);
+}
+
+.health-score__hint {
+  margin: 0;
+  max-width: 42ch;
+}
+
+.health-score__interpret {
+  margin: 0;
+  padding-top: var(--space-200);
+  border-top: 1px dashed var(--color-border-quiet);
+  font-weight: var(--font-weight-bold);
+}
+
+@media (max-width: 639px) {
+  .health-score__metrics {
+    grid-template-columns: 1fr;
+  }
 }

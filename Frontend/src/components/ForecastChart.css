@@ -1,42 +1,112 @@
-/* components/ForecastChart.css */
+/* components/ForecastChart.css — Operational View forecast card */
 
 .forecast-chart {
-  background: var(--swa-surface);
-  border: 1px solid var(--swa-border);
-  border-radius: var(--swa-radius);
-  padding: var(--swa-space-lg);
+  background: var(--color-bg-quiet);
+  border: 1px solid var(--color-border-quiet);
+  border-radius: var(--radius-md);
+  padding: var(--space-500);
+  box-shadow: var(--shadow-xs);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-300);
+  height: 100%;
 }
 
 .forecast-chart--loading,
 .forecast-chart--error {
-  color: var(--swa-text-secondary);
-  font-size: 0.9rem;
+  color: var(--color-text-soft);
+  font-size: var(--font-text-sm-size);
+  line-height: var(--font-text-sm-lineHeight);
 }
 
 .forecast-chart--error {
-  color: var(--swa-signal-critical);
+  color: #a01400;
 }
 
 .forecast-chart__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: var(--swa-space-md);
+  gap: var(--space-200);
   flex-wrap: wrap;
-  gap: var(--swa-space-sm);
 }
 
 .forecast-chart__title {
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: var(--font-eyebrow-size);
+  font-weight: var(--font-eyebrow-weight);
+  line-height: var(--font-eyebrow-lineHeight);
+  letter-spacing: var(--font-eyebrow-letterSpacing);
+  color: var(--color-text-subdued);
+  text-transform: uppercase;
 }
 
 .forecast-chart__runway {
-  font-size: 0.8rem;
-  color: var(--swa-text-secondary);
+  font-size: var(--font-text-sm-size);
+  color: var(--color-text-soft);
 }
 
 .forecast-chart__runway strong {
-  color: var(--swa-signal-critical);
-  font-family: var(--swa-font-mono);
+  color: #a01400;
+  font-family: var(--font-family-code);
+}
+
+.forecast-chart__meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-150);
+}
+
+.forecast-chart__meta p {
+  margin: 0;
+  max-width: 60ch;
+}
+
+.forecast-chart__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-200);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: var(--font-text-xs-size);
+  color: var(--color-text-soft);
+}
+
+.forecast-chart__legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-75);
+}
+
+.forecast-chart__legend-swatch {
+  display: inline-block;
+  width: var(--space-200);
+  height: 2px;
+  border-radius: var(--radius-xs);
+}
+
+.forecast-chart__legend-swatch--actual {
+  background: var(--color-brand-500);
+}
+
+.forecast-chart__legend-swatch--predicted {
+  background: #9b6829;
+  background-image: linear-gradient(
+    to right,
+    #9b6829 0,
+    #9b6829 60%,
+    transparent 60%,
+    transparent 100%
+  );
+}
+
+.forecast-chart__legend-swatch--capacity {
+  background: #a01400;
+  background-image: linear-gradient(
+    to right,
+    #a01400 0,
+    #a01400 40%,
+    transparent 40%,
+    transparent 100%
+  );
 }

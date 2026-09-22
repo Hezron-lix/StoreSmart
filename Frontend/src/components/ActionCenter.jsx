@@ -488,6 +488,12 @@ export default function ActionCenter({
 
         </div>
 
+        <p className="action-center__hint hds-text--sm hds-text--muted">
+          Rows are ranked by Priority Score. Higher = more urgent. "Saves %" shows
+          predicted compression. "Suggested" is the AI's recommended action.
+          Only Super-Admins can execute actions.
+        </p>
+
       </div>
 
 
@@ -610,15 +616,15 @@ export default function ActionCenter({
               </th>
 
               <th>
-                Score
+                Priority
               </th>
 
               <th>
-                Saves
+                Saves %
               </th>
 
               <th>
-                Recommended
+                Suggested
               </th>
 
               {

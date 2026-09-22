@@ -1,114 +1,138 @@
+/* components/CompressionInsights.css — Operational View compression card */
+
 .compression-card {
-  background: #151d26;
-  border: 1px solid #293542;
-  border-radius: 8px;
-  padding: 26px 28px;
-  min-height: 390px;
-  color: #f7f9fc;
+  background: var(--color-bg-quiet);
+  border: 1px solid var(--color-border-quiet);
+  border-radius: var(--radius-md);
+  padding: var(--space-500);
+  box-shadow: var(--shadow-xs);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-400);
+  min-height: 400px;
+  height: 100%;
 }
 
 .compression-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 24px;
+  gap: var(--space-200);
 }
 
 .compression-header h2 {
   margin: 0;
-  font-size: 20px;
-  font-weight: 700;
+  font-size: var(--font-eyebrow-size);
+  font-weight: var(--font-eyebrow-weight);
+  line-height: var(--font-eyebrow-lineHeight);
+  letter-spacing: var(--font-eyebrow-letterSpacing);
+  color: var(--color-text-subdued);
+  text-transform: uppercase;
 }
 
 .compression-header p {
-  margin: 6px 0 0;
-  color: #8fa7c2;
-  font-size: 14px;
+  margin: var(--space-25) 0 0 0;
+  font-size: var(--font-text-sm-size);
+  color: var(--color-text-soft);
 }
 
 .model-badge {
-  padding: 6px 10px;
-  border: 1px solid #2d8cff;
-  border-radius: 6px;
-  color: #56a8ff;
-  font-size: 12px;
-  font-weight: 700;
+  padding: var(--space-25) var(--space-100);
+  border: 1px solid var(--color-brand-100);
+  border-radius: var(--radius-xs);
+  color: var(--color-brand-700);
+  background: var(--color-brand-50);
+  font-size: var(--font-text-xs-size);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.4;
+  white-space: nowrap;
 }
 
 .compression-metrics {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-bottom: 28px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-200);
 }
 
 .metric-box {
-  background: #10171f;
-  border: 1px solid #273441;
-  border-radius: 7px;
-  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-100);
+  padding: var(--space-300);
+  background: var(--color-bg-subdued);
+  border: 1px solid var(--color-border-quiet);
+  border-radius: var(--radius-sm);
 }
 
 .metric-box span {
-  display: block;
-  color: #8ca2bb;
-  font-size: 12px;
-  margin-bottom: 7px;
+  font-size: var(--font-text-xs-size);
+  color: var(--color-text-subdued);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .metric-box strong {
-  font-size: 18px;
-  font-weight: 700;
-  color: #ffffff;
+  font-size: var(--font-text-lg-size);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-solid);
+  line-height: 1.2;
 }
 
 .compression-table-title {
-  margin-bottom: 12px;
-  font-size: 14px;
-  font-weight: 700;
+  font-size: var(--font-text-sm-size);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-solid);
+  margin-bottom: var(--space-100);
 }
 
 .compression-table {
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .compression-row {
   display: grid;
   grid-template-columns: 1.6fr 0.8fr 0.8fr 0.8fr 0.8fr;
   align-items: center;
-  gap: 10px;
+  gap: var(--space-150);
+  padding: var(--space-150) var(--space-100);
+  font-size: var(--font-text-sm-size);
+  color: var(--color-text-soft);
+  border-bottom: 1px dashed var(--color-border-quiet);
+}
 
-  padding: 11px 8px;
-
-  border-bottom:
-    1px solid #26323e;
-
-  font-size: 13px;
+.compression-row:last-child {
+  border-bottom: none;
 }
 
 .compression-table-head {
-  color: #88a0ba;
-  font-size: 12px;
-  font-weight: 600;
+  font-size: var(--font-text-xs-size);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-subdued);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .asset-id {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-family: var(--font-family-code);
+  color: var(--color-text-solid);
 }
 
 .saving-percent {
-  color: #f3a83b;
-  font-weight: 700;
+  color: var(--color-brand-600);
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family-code);
 }
 
 .compression-note {
-  margin-top: 18px;
-
-  color: #74879b;
-
-  font-size: 12px;
+  font-size: var(--font-text-xs-size);
+  color: var(--color-text-subdued);
+  padding-top: var(--space-200);
+  border-top: 1px dashed var(--color-border-quiet);
 }
 
 .compression-loading,
@@ -116,23 +140,35 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
   min-height: 300px;
-
-  color: #8fa7c2;
+  font-size: var(--font-text-sm-size);
+  color: var(--color-text-soft);
 }
 
 .compression-error {
-  color: #ff5c5c;
+  color: #a01400;
 }
 
-@media (max-width: 900px) {
+.compression-subtitle {
+  margin: 0;
+  padding-inline-end: var(--space-200);
+  max-width: 42ch;
+}
+
+.metric-box__hint {
+  display: block;
+  font-size: var(--font-text-xs-size);
+  line-height: 1.35;
+  color: var(--color-text-subdued);
+  margin-top: var(--space-50);
+}
+
+@media (max-width: 939px) {
   .compression-metrics {
     grid-template-columns: 1fr;
   }
 
   .compression-row {
-    grid-template-columns:
-      1.4fr 0.7fr 0.7fr 0.7fr 0.7fr;
+    grid-template-columns: 1.4fr 0.7fr 0.7fr 0.7fr 0.7fr;
   }
 }
