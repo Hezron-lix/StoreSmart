@@ -173,6 +173,11 @@ def forecast_storage(
                     2,
                 ),
 
+                "predictedGb": round(
+                    prediction,
+                    2,
+                ),
+
                 "capacityGb":
                     capacity_gb,
             }

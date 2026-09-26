@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import HealthScore from "../components/HealthScore";
+import ExecutiveHero from "../components/ExecutiveHero";
 import ForecastChart from "../components/ForecastChart";
 import TimeTravelChart from "../components/TimeTravelChart";
 import ActionCenter from "../components/ActionCenter";
@@ -264,7 +264,7 @@ export default function Dashboard({ user }) {
 
           {activeTab === TABS.EXECUTIVE && (
             <div className="dashboard__panel" role="tabpanel">
-              <HealthScore key={`health-${dataVersion}`} />
+              <ExecutiveHero key={`health-${dataVersion}`} />
             </div>
           )}
 
@@ -376,25 +376,23 @@ export default function Dashboard({ user }) {
 
           {activeTab === TABS.OPERATIONAL && (
             <div className="dashboard__panel" role="tabpanel">
+
+              <div className="dashboard__feature">
+                <span className="section__eyebrow">Prophet forecast</span>
+                <ForecastChart key={`forecast-${dataVersion}`} />
+              </div>
+
               <div className="dashboard__panel-grid dashboard__panel-grid--operational">
                 <div className="dashboard__panel-col">
-                  <span className="section__eyebrow">Model 1 · Prophet</span>
-                  <ForecastChart key={`forecast-${dataVersion}`} />
-                </div>
-                <div className="dashboard__panel-col">
-                  <span className="section__eyebrow">Model 2 · Linear Regression</span>
+                  <span className="section__eyebrow">Linear regression</span>
                   <CompressionInsights key={`compression-${dataVersion}`} />
                 </div>
+                <div className="dashboard__panel-col">
+                  <span className="section__eyebrow">Time travel</span>
+                  <TimeTravelChart key={`history-${dataVersion}`} />
+                </div>
               </div>
 
-              <div className="dashboard__section-heading">
-                <h2 className="hds-heading--md">Historical storage</h2>
-                <p className="hds-text--sm hds-text--muted">
-                  Time-travel through historical storage usage.
-                </p>
-              </div>
-
-              <TimeTravelChart key={`history-${dataVersion}`} />
             </div>
           )}
 

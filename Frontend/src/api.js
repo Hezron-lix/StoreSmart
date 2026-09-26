@@ -1,7 +1,10 @@
 // Frontend/src/api.js
 
 const API_BASE_URL =
-  "http://localhost:8000";
+  typeof window !== "undefined" &&
+  (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+    ? "http://127.0.0.1:8000"
+    : "http://localhost:8000";
 
 
 // ============================================================
@@ -1002,10 +1005,19 @@ export async function getForecast() {
       ),
 
 
-    forecast:
+    forecast: (
       forecastData.forecast ||
       forecastData.predictions ||
-      [],
+      []
+    ).map((point) => {
+      const val = Number(point.predictedGb ?? point.usedGb ?? point.yhat ?? 0);
+      return {
+        ...point,
+        date: point.date || point.ds,
+        usedGb: val,
+        predictedGb: val,
+      };
+    }),
 
 
     capacityGb:
@@ -1149,25 +1161,26 @@ export async function runCompressionAI(
 // ACTION CENTER
 // ============================================================
 
-export async function getActionItems() {
+export async function getActionItems(options = {}) {
+  const {
+    sourceType = "json",
+    page = 1,
+    limit = 50,
+  } = typeof options === "string" ? { sourceType: options } : options;
 
   // timestamp defeats any browser/proxy caching
-  const cacheBuster =
-    Date.now();
+  const cacheBuster = Date.now();
+  const query = new URLSearchParams({
+    source_type: sourceType,
+    page: String(page),
+    limit: String(limit),
+    _: String(cacheBuster),
+  });
 
+  const result = await apiRequest(`/assets?${query.toString()}`);
+  const assets = result.data || [];
 
-  const result =
-    await apiRequest(
-      `/assets?_=${cacheBuster}`
-    );
-
-
-  const assets =
-    result.data ||
-    [];
-
-
-  return assets.map(
+  const items = assets.map(
     (asset) => {
 
       let tags =
@@ -1343,6 +1356,15 @@ export async function getActionItems() {
     }
   );
 
+  return {
+    items,
+    count: result.count ?? items.length,
+    total: result.total ?? items.length,
+    totalPages: result.total_pages ?? Math.max(1, Math.ceil((result.total || items.length) / limit)),
+    page: result.page ?? page,
+    limit: result.limit ?? limit,
+    formatCounts: result.format_counts || { json: 0, csv: 0, txt: 0, yaml: 0 },
+  };
 }
 
 

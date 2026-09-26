@@ -12,7 +12,6 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ReferenceLine,
 } from "recharts";
 import { getForecast, ApiError } from "../api";
@@ -65,9 +64,18 @@ export default function ForecastChart() {
   }
 
   // Merge history (actuals) and forecast (predicted) into one chart timeline.
+  const lastIndex = data.history.length - 1;
   const chartData = [
-    ...data.history.map((point) => ({ date: point.date, actualGb: point.usedGb })),
-    ...data.forecast.map((point) => ({ date: point.date, predictedGb: point.predictedGb })),
+    ...data.history.map((point, index) => ({
+      date: point.date,
+      actualGb: point.usedGb,
+      predictedGb: index === lastIndex ? point.usedGb : undefined,
+    })),
+    ...data.forecast.map((point) => ({
+      date: point.date,
+      actualGb: undefined,
+      predictedGb: Number(point.predictedGb ?? point.usedGb),
+    })),
   ];
 
   return (
@@ -122,19 +130,20 @@ export default function ForecastChart() {
               fontSize: "0.8rem",
             }}
             labelFormatter={formatDate}
+            formatter={(value, name) => [`${value} GB`, name]}
           />
-          <Legend wrapperStyle={{ fontSize: "0.8rem" }} />
 
           {data.capacityGb && (
             <ReferenceLine
               y={data.capacityGb}
-              stroke="#a01400"
-              strokeDasharray="4 4"
+              stroke="#dc2626"
+              strokeWidth={1.5}
               label={{
-                value: "Capacity",
+                value: `Capacity (${data.capacityGb} GB)`,
                 position: "insideTopRight",
-                fill: "#a01400",
+                fill: "#dc2626",
                 fontSize: 11,
+                fontWeight: 600,
               }}
             />
           )}
@@ -144,7 +153,7 @@ export default function ForecastChart() {
             dataKey="actualGb"
             name="Actual usage"
             stroke="var(--color-brand-500)"
-            strokeWidth={2}
+            strokeWidth={2.5}
             dot={false}
             connectNulls
           />
@@ -152,9 +161,9 @@ export default function ForecastChart() {
             type="monotone"
             dataKey="predictedGb"
             name="Predicted usage"
-            stroke="#9b6829"
-            strokeWidth={2}
-            strokeDasharray="5 3"
+            stroke="#ff6118"
+            strokeWidth={2.5}
+            strokeDasharray="6 4"
             dot={false}
             connectNulls
           />

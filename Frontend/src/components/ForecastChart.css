@@ -46,7 +46,7 @@
 }
 
 .forecast-chart__runway strong {
-  color: #a01400;
+  color: #dc2626;
   font-family: var(--font-family-code);
 }
 
@@ -81,7 +81,7 @@
 .forecast-chart__legend-swatch {
   display: inline-block;
   width: var(--space-200);
-  height: 2px;
+  height: 3px;
   border-radius: var(--radius-xs);
 }
 
@@ -90,23 +90,16 @@
 }
 
 .forecast-chart__legend-swatch--predicted {
-  background: #9b6829;
-  background-image: linear-gradient(
+  background: repeating-linear-gradient(
     to right,
-    #9b6829 0,
-    #9b6829 60%,
-    transparent 60%,
-    transparent 100%
+    var(--color-accent-orange-350, #ff6118) 0,
+    var(--color-accent-orange-350, #ff6118) 5px,
+    transparent 5px,
+    transparent 9px
   );
 }
 
 .forecast-chart__legend-swatch--capacity {
-  background: #a01400;
-  background-image: linear-gradient(
-    to right,
-    #a01400 0,
-    #a01400 40%,
-    transparent 40%,
-    transparent 100%
-  );
+  background: #dc2626;
+  height: 2px;
 }

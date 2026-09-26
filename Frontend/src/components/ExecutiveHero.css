@@ -1,0 +1,194 @@
+/* Executive Hero — the visual anchor of the Executive tab */
+
+.exec-hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-500);
+  padding: var(--space-600);
+  background: linear-gradient(
+    135deg,
+    var(--color-brand-50) 0%,
+    var(--color-bg-quiet) 60%,
+    var(--color-bg-quiet) 100%
+  );
+  border: 1px solid var(--color-brand-100);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.exec-hero--loading,
+.exec-hero--error {
+  color: var(--color-text-soft);
+  padding: var(--space-800);
+  text-align: center;
+}
+
+.exec-hero--error {
+  color: #a01400;
+}
+
+/* ---- Top: copy + ring ---- */
+
+.exec-hero__top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-500);
+  align-items: center;
+}
+
+.exec-hero__copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-150);
+  min-width: 0;
+}
+
+.exec-hero__eyebrow {
+  font-size: var(--font-eyebrow-size);
+  font-weight: var(--font-eyebrow-weight);
+  line-height: var(--font-eyebrow-lineHeight);
+  letter-spacing: var(--font-eyebrow-letterSpacing);
+  color: var(--color-brand-600);
+  text-transform: uppercase;
+}
+
+.exec-hero__grade-line {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-300);
+  margin: 0;
+  font-weight: var(--font-weight-normal);
+}
+
+.exec-hero__grade {
+  font-size: clamp(4rem, 8vw, 6rem);
+  font-weight: var(--font-weight-bold);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.exec-hero__grade--A,
+.exec-hero__grade--B { color: #006f3a; }
+.exec-hero__grade--C    { color: #9b6829; }
+.exec-hero__grade--D,
+.exec-hero__grade--F    { color: #a01400; }
+
+.exec-hero__grade-label {
+  font-size: var(--font-heading-md-size);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--font-heading-md-lineHeight);
+  letter-spacing: var(--font-heading-md-letterSpacing);
+  color: var(--color-text-solid);
+}
+
+.exec-hero__caption {
+  margin: 0;
+  max-width: 56ch;
+  font-size: var(--font-text-sm-size);
+  line-height: var(--font-text-sm-lineHeight);
+  color: var(--color-text-soft);
+}
+
+/* ---- Ring ---- */
+
+.exec-hero__ring {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  flex-shrink: 0;
+}
+
+.exec-hero__ring-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.exec-hero__ring-track {
+  stroke: var(--color-brand-200);
+}
+
+.exec-hero__ring-fill {
+  transition: stroke-dashoffset var(--duration-slow) var(--ease-standard);
+}
+
+.exec-hero__ring-fill--A,
+.exec-hero__ring-fill--B { stroke: #006f3a; }
+.exec-hero__ring-fill--C    { stroke: #9b6829; }
+.exec-hero__ring-fill--D,
+.exec-hero__ring-fill--F    { stroke: #a01400; }
+
+.exec-hero__ring-percent {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-family-code);
+  font-size: var(--font-heading-lg-size);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-solid);
+}
+
+/* ---- KPI tiles ---- */
+
+.exec-hero__kpis {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-200);
+}
+
+.exec-hero__kpi {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-50);
+  padding: var(--space-300);
+  background: var(--color-bg-quiet);
+  border: 1px solid var(--color-border-quiet);
+  border-radius: var(--radius-md);
+}
+
+.exec-hero__kpi-label {
+  font-size: var(--font-text-xs-size);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-subdued);
+}
+
+.exec-hero__kpi-value {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  color: var(--color-text-solid);
+  font-family: var(--font-family);
+  letter-spacing: -0.02em;
+}
+
+.exec-hero__kpi-detail {
+  font-size: var(--font-text-xs-size);
+  line-height: 1.4;
+  color: var(--color-text-soft);
+  font-family: var(--font-family-code);
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 939px) {
+  .exec-hero__top {
+    grid-template-columns: 1fr;
+  }
+  .exec-hero__ring {
+    width: 160px;
+    height: 160px;
+  }
+  .exec-hero__kpis {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 639px) {
+  .exec-hero {
+    padding: var(--space-400);
+  }
+}

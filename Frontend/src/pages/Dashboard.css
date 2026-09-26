@@ -52,8 +52,9 @@
 }
 
 .dashboard__tab--active {
-  background: var(--color-bg-subdued);
-  color: var(--color-text-solid);
+  background: var(--color-brand-600);
+  color: var(--color-neutral-0) !important;
+  box-shadow: 0 1px 4px rgba(83, 58, 253, 0.3);
 }
 
 .dashboard__tab:focus-visible {
@@ -67,7 +68,7 @@
   color: var(--color-text-soft);
   margin: 0;
   padding-inline: var(--space-50);
-  margin-top: calc(-1 * var(--space-400));
+  margin-top: calc(-1 * var(--space-500));
 }
 
 /* ---------- Content ---------- */
@@ -82,6 +83,12 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-800);
+}
+
+.dashboard__feature {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-200);
 }
 
 /* ---------- Panel grids ---------- */
@@ -268,6 +275,8 @@
 
 .dashboard__upload-button {
   min-width: 160px;
+  min-height: 42px;
+  font-weight: 600;
 }
 
 @media (max-width: 639px) {
@@ -336,19 +345,17 @@
   justify-content: center;
   width: var(--space-400);
   height: var(--space-400);
-  border-radius: var(--radius-sm);
+  border-radius: 6px;
   background: transparent;
   border: none;
   color: var(--color-text-subdued);
   font-size: var(--font-text-lg-size);
   cursor: pointer;
-  transition:
-    background-color var(--duration-base) var(--ease-standard),
-    color var(--duration-base) var(--ease-standard);
+  transition: all var(--duration-fast) var(--ease-standard);
 }
 
 .dashboard__selected-remove:hover {
-  background: var(--color-bg-quiet);
+  background: rgba(234, 34, 97, 0.1);
   color: var(--color-accent-ruby-400);
 }
 

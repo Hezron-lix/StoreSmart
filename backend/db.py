@@ -426,11 +426,109 @@ def fetch_assets():
                     row["tags"] = []
 
         return rows
-
     finally:
         if cursor:
             cursor.close()
+        if connection:
+            connection.close()
 
+
+# ============================================================
+# FETCH ASSET FORMAT COUNTS
+# ============================================================
+
+def fetch_asset_format_counts() -> dict[str, int]:
+    """Return dictionary of asset counts grouped by source_type."""
+    connection = None
+    cursor = None
+    try:
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+        cursor.execute(
+            """
+            SELECT source_type, COUNT(*) AS count
+            FROM assets
+            GROUP BY source_type
+            """
+        )
+        counts = {"json": 0, "csv": 0, "txt": 0, "yaml": 0}
+        for row in cursor.fetchall():
+            st = str(row.get("source_type") or "").strip().lower()
+            if st in counts:
+                counts[st] = int(row.get("count") or 0)
+        return counts
+    finally:
+        if cursor:
+            cursor.close()
+        if connection:
+            connection.close()
+
+
+# ============================================================
+# FETCH PAGINATED ASSETS
+# ============================================================
+
+def fetch_paginated_assets(
+    source_type: str | None = None,
+    page: int = 1,
+    limit: int = 50,
+    total: int | None = None,
+) -> tuple[list[dict], int]:
+    """Fetch a paginated slice of assets joined with AI predictions.
+
+    Returns (rows, total_matching).
+    """
+    connection = None
+    cursor = None
+    try:
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        page = max(1, int(page))
+        limit = max(1, min(int(limit), 200))
+        offset = (page - 1) * limit
+
+        params = []
+        where_clause = ""
+        if source_type:
+            where_clause = "WHERE a.source_type = %s"
+            params.append(source_type.strip().lower())
+
+        if total is None:
+            count_sql = f"SELECT COUNT(*) AS total FROM assets a {where_clause}"
+            cursor.execute(count_sql, tuple(params))
+            total_row = cursor.fetchone()
+            total = int(total_row["total"]) if total_row else 0
+
+        # Paginated rows sorted by priority score (high to low)
+        query = f"""
+            SELECT
+                a.*,
+                p.savings_percent,
+                p.savings_gb,
+                p.priority_score
+            FROM assets a
+            LEFT JOIN predictions p
+                ON a.asset_id = p.asset_id
+            {where_clause}
+            ORDER BY (p.priority_score IS NULL), p.priority_score DESC, a.id DESC
+            LIMIT %s OFFSET %s
+        """
+        query_params = list(params) + [limit, offset]
+        cursor.execute(query, tuple(query_params))
+        rows = cursor.fetchall()
+
+        for row in rows:
+            if isinstance(row.get("tags"), str):
+                try:
+                    row["tags"] = json.loads(row["tags"])
+                except Exception:
+                    row["tags"] = []
+
+        return rows, total
+    finally:
+        if cursor:
+            cursor.close()
         if connection:
             connection.close()
 
@@ -1076,6 +1174,8 @@ __all__ = [
     "get_connection",
     "fetch_assets",
     "fetch_asset",
+    "fetch_asset_format_counts",
+    "fetch_paginated_assets",
     "fetch_storage_history",
     "upsert_prediction",
     "fetch_compression_insights",
